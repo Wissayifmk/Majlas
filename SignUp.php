@@ -133,7 +133,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
             <p id="paragraph">Let's start the journey! <br> Select Account Type</p>
             <div class="DesForm" style="display: none;">
-                <form action="index.php" method="POST" >
+                <form action="SignUp.php" method="POST" >
                     <div class="DesInfo">
                         <h2 style="color: rgb(68, 68, 68); font-size: 20px;">Designer's Information</h2><br>
 
@@ -177,7 +177,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
 
             <div class="ClientForm" style="display: none;">
-                <form action="index.php" method="POST">
+                <form action="SignUp.php" method="POST">
                     <h2 style="color: rgb(70, 70, 70);">Client's Information</h2><br>
                     <label>Name:</label>
                     <input type="text" name="Fname" value="" class="FormHeight" placeholder=" First Name"
