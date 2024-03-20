@@ -1,0 +1,63 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
+*/
+/* 
+    Created on : Jan 26, 2024, 9:09:27 PM
+    Author     : alzeghaibi.
+*/
+
+main{
+    background-image: linear-gradient(rgba(255, 255, 255, 0.7) 100%, transparent), url(image/m.jpg);
+    height: 700px;
+    Margin-top:-4em;
+}
+.projectPic{
+    border-top-left-radius: 43px;
+    border-top-right-radius: 43px;
+    width:300px;
+    height: 250px;
+}
+.allprojects{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content:space-around;
+    align-content: center;
+    align-items: center;
+}
+.Project{
+    border-radius: 43px;
+    align-self: center;
+    width: 300px;
+    height: 480px;
+    transition: 0.5s ease;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    background-color: #F8EFE9;
+    margin-bottom: 20px;
+
+}
+.Project:hover{
+    transform: scale(1.05);
+    background-color: #F8EFE9;
+}
+
+h2{
+    font-size: larger;
+}
+.afterPic{
+    padding-left:10px;
+    padding-right: 10px;
+
+}
+.ProjectName ,.DesignCategory,.ProjectDescription{
+    color: #881817;
+}
+.Projectname{
+    color: black;
+    font-weight: 500;
+}
+h1{
+    text-align: center;
+    color: #881817;
+}
