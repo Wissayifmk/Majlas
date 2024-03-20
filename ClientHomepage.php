@@ -1,3 +1,10 @@
+<?php
+session_start();
+if(isset($SESSION['id']) && isset($SESSION['type'])){
+    $ClientID = $_SESSION['id']; 
+    $Type = $_SESSION['type'];
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,17 +20,14 @@
 <body>
     <header>
         <img src="image/tapImage.PNG" alt="Majlas's Logo" width="200">
-        <button type="button" onclick="window.location.href = 'ClientHomepage.html'" class="log-out">
-            <img src="image/Log-Out.png" alt="log-out">
-        </button>        
+        <button type="button" onclick="window.location.href = 'SignOut.php'" class="log-out">
+                <img src="image/Log-Out.png" alt="log-out">
+        </button>         
     </header>
     <main>
         <section class="part1">
             <div class="headerContent">
                 <?php 
-                session_start();
-                //should i use isset? 
-                $clientID= $_SESSION['id'];
                 $connection= mysqli_connect('localhost', 'root','root','majlas');
                 if(mysqli_connect_error()){
                     echo '<p>failed</p>';
