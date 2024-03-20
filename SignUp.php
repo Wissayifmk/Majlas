@@ -1,4 +1,3 @@
-   
 <?php 
 session_start();
 
@@ -24,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($row["countEmail"] > 0) {
                 echo '<script>
                             alert("The email already exists. Please use a different email");
-                            window.location.href = "index.php";
+                            window.location.href = "SignUp.php";
                         </script>';
                 exit; // To ensure stopping the execution of this script
             } else {
@@ -36,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $LastID = mysqli_insert_id($connection);
                     $_SESSION['id'] = $LastID;
                     $_SESSION['type'] = $Type;
-                    echo '<script>window.location.href = "clientHomePage.php";</script>';
+                    echo '<script>window.location.href = "ClientHomePage.php";</script>';
                     exit; // To ensure stopping the execution of this script
                 }
             }
@@ -48,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($row['countEmail'] > 0) {
                 echo '<script>
                             alert("The email already exists. Please use a different email");
-                            window.location.href = "index.php";
+                            window.location.href = "SignUp.php";
                         </script>';
                 exit; // To ensure stopping the execution of this script
             } else {
