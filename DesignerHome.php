@@ -4,9 +4,9 @@
         <title>Designer Homepage</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="shortcut icon" type="x-icon" href="image2/tapImage.PNG">
-        <link rel="stylesheet" href="style2.css">
-        <link rel="stylesheet" href="designerHome2.css">
+        <link rel="shortcut icon" type="x-icon" href="image/tapImage.PNG">
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="DesignerHome.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <?php 
@@ -21,7 +21,7 @@
          $output="<p>can not connect to databsase</p>".$error;
          exit($output);
          } else {
-           session_start();//اشوف احتاجه  ولا بس بالساين اب بيج
+           session_start();
            $designerID = $_SESSION['id'];
            $query1 = "SELECT * FROM Designer WHERE id = $designerID";
            $result1 = mysqli_query($connection, $query1);
@@ -57,6 +57,9 @@
                    echo '<span>Email address:</span> <a href="mailto:' . $emailAddress . '">' 
                            . $emailAddress . '</a><br>';
                    echo '<span>Brand Name:</span> ' . $brandName . '<br>';
+                   
+                   $sql="SELECT * FROM DesignCategory WHERE id = $designerID";
+                   echo '<span>Category:</span> ' . $category . '<br>';
                    echo '</p>';
                    echo '</div>';
                 ?>
@@ -77,7 +80,7 @@
             $query2 = "SELECT * FROM DesignPortoflioProject WHERE designerID = $designerID";
             $result2 = mysqli_query($connection, $query2);
 
-               echo '<table id="table1">';
+                echo '<table id="table1">';
                 echo '<tr>';
                 echo '<th>Project Name</th>';
                 echo '<th>Image</th>';
@@ -102,7 +105,7 @@
                    echo '<td>' . $designCategory . '</td>';
                    echo '<td>' . $description . '</td>';
                    
-                   echo '<td><a href="ProjectUpdate.php?id=' . $projectID . '">Edit</a></td>';
+                   echo '<td><a href="ProjectUpdate.php?id=' . $projectID . '">Edit</a></td>'; //name of the page
                    echo '<td><a href="ProjectDelete.php?id=' . $projectID . '">Delete</a></td>';
                    echo '</tr>';
                     }
@@ -113,13 +116,39 @@
             <section id="consultation-requests">
                 <h2 class="header1">Design Consultation Requests</h2>
               <?php 
-              
-               $sql = "SELECT dcr.id, c.firstName AS clientFName,c.lastName AS clientLName, 
-                   rt.type AS roomType, dcat.category AS designCategory, dcr.roomWidth, dcr.roomLength, dcr.colorPrefrences, dcr.date
-                                FROM designconsultationrequest dcr
-                                INNER JOIN client c ON dcr.clientID = c.id
-                                INNER JOIN roomtype rt ON dcr.roomTypeID = rt.id
-                                INNER JOIN designcategory dcat ON dcr.designCategoryID = dcat.id";
+                 echo '<table>';
+                  echo '<tr>';
+                  echo '<th>Client</th>';
+                  echo '<th>Room</th>';
+                  echo '<th>Dimensions</th>';
+                 echo '<th>Design Category </th>';
+                 echo '<th>Color Preferences</th>';
+                echo '<th>Date</th>';
+                echo '</tr>';
+                
+                $query3 = "SELECT dcr.id, c.firstName AS clientFName, c.lastName AS clientLName, rt.type AS roomType, dc.category AS designCategory, dcr.roomWidth, dcr.roomLength, dcr.colorPreferences, dcr.date
+           FROM DesignConsultationRequest dcr
+           INNER JOIN Client c ON dcr.clientID = c.id
+           INNER JOIN RoomType rt ON dcr.roomTypeID = rt.id
+           INNER JOIN DesignCategory dc ON dcr.designCategoryID = dc.id
+           WHERE dcr.statusID = (SELECT id FROM RequestStatus WHERE status = 'pending consultation')
+           AND dcr.designerID = <designerID>";
+                
+                $result3 = mysqli_query($connection, $query3);
+                        while ($row = mysqli_fetch_assoc($result3)) {
+                            echo '<tr>';
+                            echo '<td>' . $row["clientFName"].' '.$row["clientLName"]. '</td>';
+                            echo '<td>' . $row["roomType"] . '</td>';
+                            echo '<td>' . $row["roomWidth"] . 'x' . $row["roomLength"] . '</td>';
+                            echo '<td>' . $row["designCategory"] . '</td>';
+                            echo '<td>' . $row["colorPrefrences"] . '</td>';
+                            echo '<td>' . $row["date"] . '</td>';
+                            echo '<td><a href="DesignConsultation.php?id=' . $row['id'] . '">Provide Consultation</a></td>';
+                            echo '<td><a href="DeclineConsultation.php?id=' . $row['id'] . '">Decline Consultation</a></td>';
+                            echo '</tr>';
+                            
+                        }
+             
               ?>
             </section>
 
