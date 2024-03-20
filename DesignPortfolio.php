@@ -1,4 +1,10 @@
-
+<?php
+session_start();
+if(isset($SESSION['id']) && isset($SESSION['type'])){
+    $ClientID = $_SESSION['id']; 
+    $Type = $_SESSION['type'];
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -14,9 +20,10 @@
     <body>
         <header>
             <img src="image/tapImage.PNG" alt="Majlas's Logo" width="200">
-            <button type="button" onclick="window.location.href = 'index.html'" class="log-out">
+            <button type="button" onclick="window.location.href = 'SignOut.php'" class="log-out">
                 <img src="image/Log-Out.png" alt="log-out">
             </button> 
+
         </header>
         <div class="breadcrumb">
             <a href="ClientHomePage.html">Client Homepage</a>
