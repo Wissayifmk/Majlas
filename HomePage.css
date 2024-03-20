@@ -1,0 +1,125 @@
+button {
+    background-color: #a6b5c4;
+    color: #ffffff;
+    border: none;
+    width: 20%;
+    height: 2.5em;
+    font-size: 22px;
+    font-weight: 500;
+    transition: .4s;
+    border-radius: 50px;
+    margin-top: 2em;
+    margin-left: 11em;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.5s ease-in-out;
+    position: relative;
+    overflow: hidden;
+}
+
+button:hover {
+    color: rgb(255, 255, 255);
+    background-color: #70859b;
+    cursor: pointer
+}
+
+p.Majlas {
+    font-size: 6em;
+}
+
+#pMajlas {
+    font-family: "Courier New", Papyrus, Monospace;
+    font-size: 3.5em;
+    text-align: center;
+    margin-left: -3em;
+    color: #881817;
+}
+
+.Sign {
+    color: #994F41;
+    margin-left: 11.5em;
+    font-size: 1.3em;
+}
+
+.Sign:hover {
+    color: #881817;
+    cursor: pointer;
+}
+
+#Story,
+#PStory {
+    text-align: center;
+    color: #881817;
+}
+
+#Story {
+    font-weight: bold;
+    font-size: 2.5em;
+}
+
+#PStory {
+    font-size: 1.7em;
+    font-weight: lighter;
+    text-align: center;
+}
+
+.story {
+    border-bottom: 2px solid #70859b;
+    width: 70%;
+    margin-left: 11em;
+}
+
+#Inspired {
+    font-size: 3em;
+    font-weight: lighter;
+    margin-top: -7em;
+    margin-left: 2em;
+    color: #881817;
+}
+
+#InspiredPic {
+    margin-top: 3em;
+    margin-left: 45em;
+    width: 50%;
+}
+
+#Loginbtn:hover{
+
+    background-color: #70859b;
+
+}
+#Loginbtn{
+    transition: all 0.5s ease-in-out;
+    position: relative;
+    overflow: hidden;
+ }
+ 
+ 
+ #Loginbtn::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    transition: all 0.5s ease-in-out;
+    background-color: #70859b;
+    border-radius: 30px;
+    visibility: hidden;
+    height: 10px;
+    width: 10px;
+    z-index: -1;
+}
+
+#Loginbtn:hover {
+    box-shadow: 1px 1px 200px #252525;
+    color: #EFEFEF;
+    border: none;
+}
+
+#Loginbtn:hover::after {
+    visibility: visible;
+    transform: scale(100) translateX(2px);
+}
+
+ #Loginbtn:hover, #Loginbtn:active, #Loginbtn:focus{
+    background-color:#70859b ;
+ }
