@@ -1,7 +1,9 @@
 <?php
-    session_start();
+ 
+   
+   session_start();
        
- if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Retrieve form data
     $projectName = $_POST['project-name'];
     $projectImage = $_POST['project-image']['name'];
@@ -9,6 +11,7 @@
     $projectDescription = $_POST['project-description'];
         }
         
+
      // Create a new mysqli connection
          $connection = mysqli_connect("localhost", "root", "root", "majlas");
     if (mysqli_connect_errno()) {
@@ -16,26 +19,23 @@
         die("Connection Error" . mysqli_connect_error());
         }
             
-        $sql = "INSERT INTO ddesignportoflioproject (project_name, project_image, design_category, project_description) VALUES (?, ?, ?, ?)";
+        $sql = "INSERT INTO designportoflioproject (projectName, projectImgFileName, description) VALUES (?, ?, ?)";
         
-        $stmt = mysqli_stmt_init($connection);
-        
-        if(mysqli_stmt_prepare($stmt, $sql)){
-            die(mysqli_errno($connection));
-        }
-        mysqli_stmt_bind_param($stmt,"ssss",$projectName,$projectImage, $designCategory, $projectDescription);
+        $stmt = mysqli_prepare($connection,$sql);
+         mysqli_stmt_bind_param($stmt,"sss",$projectName,$projectImage, $projectDescription);
         
        
+      
+      
         if (mysqli_stmt_execute($stmt)) {
             // Redirect to designer's homepage
             header('Location: DesignerHomePage.php');
             exit();
         } else {
-            // Handle database error
+           // Handle database error
             echo "Error: " . $stmt->error;
-        }
-        
-    ?>
+       }
+       ?>
     <!DOCTYPE html>
 <html lang="en">
     <head>
