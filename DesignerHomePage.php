@@ -55,7 +55,7 @@
     echo '<span>Last name:</span> ' . $lastName . '<br>';
     echo '<span>Email address:</span> <a href="mailto:' . $emailAddress . '">' . $emailAddress . '</a><br>';
     echo '<span>Brand Name:</span> ' . $brandName . '<br>';
-
+    echo '<span>Category:</span> ';
     $query4 = "SELECT designCategoryID FROM DesignerSpeciality WHERE designerID=$designerID";
     $result4 = mysqli_query($connection, $query4);
     if ($result4) 
@@ -66,9 +66,12 @@
             $query5 = "SELECT category FROM DesignCategory WHERE id=$catid";
             $result5 = mysqli_query($connection, $query5);
             if ($result5) 
-            {
+            { 
+                
                 $row3 = mysqli_fetch_assoc($result5);
-                echo '<span>Category:</span> ' . $row3['category'] . '<br>';
+                
+                 echo $row3['category']." ";
+                
             } else 
             {
                 echo 'Error fetching design category: ' . mysqli_error($connection);
