@@ -56,7 +56,7 @@
     echo '<span>Email address:</span> <a href="mailto:' . $emailAddress . '">' . $emailAddress . '</a><br>';
     echo '<span>Brand Name:</span> ' . $brandName . '<br>';
 
-    $query4 = "SELECT designCategoryID FROM DesignerSpeciality WHERE designerID=$id";
+    $query4 = "SELECT designCategoryID FROM DesignerSpeciality WHERE designerID=$designerID";
     $result4 = mysqli_query($connection, $query4);
     if ($result4) 
     {
