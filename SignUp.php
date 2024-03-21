@@ -88,7 +88,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     $_SESSION['id'] = $LastID;
                     $_SESSION['type'] = $Type;
-                    echo '<script>window.location.href = "DesignerHome.php";</script>';
+                    echo '<script>window.location.href = "DesignerHomePage.php";</script>';
                     exit; // To ensure stopping the execution of this script
                 }
             }
