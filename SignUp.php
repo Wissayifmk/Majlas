@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $LastID = mysqli_insert_id($connection);
                     $_SESSION['id'] = $LastID;
                     $_SESSION['type'] = $Type;
-                    echo '<script>window.location.href = "ClientHomePage.php";</script>';
+                    echo '<script>window.location.href = "ClientHomepage.php";</script>';
                     exit; // To ensure stopping the execution of this script
                 }
             }
@@ -88,7 +88,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     $_SESSION['id'] = $LastID;
                     $_SESSION['type'] = $Type;
-                    echo '<script>window.location.href = "DesignerHomePage.php";</script>';
+                    echo '<script>window.location.href = "DesignerHome.php";</script>';
                     exit; // To ensure stopping the execution of this script
                 }
             }
