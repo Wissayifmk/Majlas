@@ -31,40 +31,63 @@
     <body>  
         <header>
         <img src="image/tapImage.PNG" alt="Majlas's Logo" width="200">
-            <button type="button" onclick="window.location.href = 'index.html'" class="log-out">
+            <button type="button"  onclick="window.location.href = 'SignOut.php'" class="log-out">
                 <img src="image/Log-Out.png" alt="log-out">
             </button>    
         </header>
         <main>
             <section class="part0">
                 <div class="headerContent">
-                <?php 
-                  if ($result1 && mysqli_num_rows($result1) > 0) {
-                      $designer = mysqli_fetch_assoc($result1);
-                      $firstName = $designer['firstName'];
-                      $lastName = $designer['lastName'];
-                      $emailAddress = $designer['emailAddress'];
-                      $brandName = $designer['brandName'];
-                      $logoImgFileName = $designer['logoImgFileName'];
-                    }
-                   echo '<div class="designer-info">';
-                   echo '<h1>Welcome '.$firstName.'</h1>';
-                   echo '<p>';
-                   echo '<h3>Designer information:</h3>'; 
-                   echo '<span>First name:</span> ' . $firstName . '<br>';
-                   echo '<span>Last name:</span> ' . $lastName . '<br>';
-                   echo '<span>Email address:</span> <a href="mailto:' . $emailAddress . '">' 
-                           . $emailAddress . '</a><br>';
-                   echo '<span>Brand Name:</span> ' . $brandName . '<br>';
-                   
-               
-                   echo '<span>Category:</span> ' .$category. '<br>'; ///dosent show
-                   echo '</p>';
-                   echo '</div>';
-                ?>
+              <?php
+              if ($result1 && mysqli_num_rows($result1) > 0) {
+                  $designer = mysqli_fetch_assoc($result1);
+                  $firstName = $designer['firstName'];
+                  $lastName = $designer['lastName'];
+                  $emailAddress = $designer['emailAddress'];
+                   $brandName = $designer['brandName'];
+                   $logoImgFileName = $designer['logoImgFileName'];
+
+    echo '<div class="designer-info">';
+    echo '<h1>Welcome ' . $firstName . '</h1>';
+    echo '<p>';
+    echo '<h3>Designer information:</h3>';
+    echo '<span>First name:</span> ' . $firstName . '<br>';
+    echo '<span>Last name:</span> ' . $lastName . '<br>';
+    echo '<span>Email address:</span> <a href="mailto:' . $emailAddress . '">' . $emailAddress . '</a><br>';
+    echo '<span>Brand Name:</span> ' . $brandName . '<br>';
+
+    $query4 = "SELECT designCategoryID FROM DesignerSpeciality WHERE designerID=$id";
+    $result4 = mysqli_query($connection, $query4);
+    if ($result4) 
+    {
+        while ($row2 = mysqli_fetch_assoc($result4)) 
+        {
+            $catid = $row2['designCategoryID'];
+            $query5 = "SELECT category FROM DesignCategory WHERE id=$catid";
+            $result5 = mysqli_query($connection, $query5);
+            if ($result5) 
+            {
+                $row3 = mysqli_fetch_assoc($result5);
+                echo '<span>Category:</span> ' . $row3['category'] . '<br>';
+            } else 
+            {
+                echo 'Error fetching design category: ' . mysqli_error($connection);
+            }
+        }
+        echo '</p>';
+       echo '</div>';
+    } else 
+    {
+        echo 'Error fetching designer specialties: ' . mysqli_error($connection);
+    }
+   
+} else {
+    echo 'No designer found.';
+}
+?>
                 </div>
                 <span class="imgHover">
-                    <?php  echo '<img src="image/' . $logoImgFileName . '" alt="designer logo" id="image0">'; ?> <!<!--check it -->
+                    <?php  echo '<img src="image/' . $logoImgFileName . '" alt="designer logo" id="image0">'; ?> 
                 </span>
             </section>   
             <div class="desHeader">
