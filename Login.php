@@ -1,66 +1,60 @@
 
+<?php
+session_start();
 
-    <?php    
-   session_start();
-     // Create a new mysqli connection
-         $connection = mysqli_connect("localhost", "root", "root", "majlas");
-    if (mysqli_connect_errno()) {
-        // Check connection
-        die("Connection Error" . mysqli_connect_error());
+// Create a new mysqli connection
+$connection = mysqli_connect("localhost", "root", "root", "majlas");
+if (mysqli_connect_errno()) {
+    // Check connection
+    die("Connection Error" . mysqli_connect_error());
+} else  {
+    // Check if the form has been submitted
+    if (isset($_POST['submit'])) {
+        $email = $_POST['Email'];
+        $password = $_POST['password'];
+        $usertype = $_POST['Type'];
+
+        // Prepare the SQL statement based on the user type
+        if ($usertype == 'client') {
+            $table = 'client';
+        } else if ($usertype == 'interior') {
+            $table = 'designer';
         }
-        
-        // Check if the form has been submitted
-if (isset($_POST['submit'])) {
-    $email = $_POST['Email'];
-    $password = $_POST['password'];
-    $usertype = $_POST['Type'];
 
-    // Prepare the SQL statement based on the user type
-    if ($usertype == 'client') {
-        $table = 'client';
-    } else if ($usertype == 'interior') {
-        $table = 'designer';
+        $sql = "SELECT id, password FROM $table WHERE emailAddress = ?";
+        $stmt = mysqli_prepare($connection, $sql);
+        mysqli_stmt_bind_param($stmt, 's', $email);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_store_result($stmt);
+
+        if (mysqli_stmt_num_rows($stmt) == 1) {
+            mysqli_stmt_bind_result($stmt, $id, $hashedPassword);
+            mysqli_stmt_fetch($stmt);
+
+            // Verify the password
+            if (password_verify($password, $hashedPassword)) {
+                // Set the session variables
+                $_SESSION['user_id'] = $id;
+                $_SESSION['user_type'] = $usertype;
+
+                // Redirect to the appropriate homepage based on the user type
+                if ($usertype == 'client') {
+                    header('Location: ClientHomepage.php');
+                    exit();
+                } else if ($usertype == 'interior') {
+                    header('Location: DesignerHomePage.php');
+                    exit();
+                }
+            }
+        }
+
+        // Authentication failed, redirect back to the login page with an error message
+        header('Location: Login.html?error=' . urlencode('Invalid email or password'));
+        exit();
     }
-
-  $sql = "SELECT id, password FROM $table WHERE emailAddress = ?";
-  $stmt = mysqli_prepare($connection, $sql);
-  mysqli_stmt_bind_param($stmt, 's', $email);
-  mysqli_stmt_execute($stmt);
-  mysqli_stmt_store_result($stmt);
-
-  
-if (mysqli_stmt_num_rows($stmt) == 1) {
-    mysqli_stmt_bind_result($stmt, $id, $hashedPassword);
-    mysqli_stmt_fetch($stmt);
-
-
-
-    // Verify the password
-    if (password_verify($password, $hashedPassword)) {
-      // Set the session variables
-      $_SESSION['user_id'] = $id;
-      $_SESSION['user_type'] = $usertype;
-
-      // Redirect to the appropriate homepage based on the user type
-      if ($usertype == 'client') {
-          echo'<script>window.location.href = "ClientHomepage.php";</script>';
-        exit();
-      } else {
-       echo'<script>window.location.href = "DesignerHomePage.php";</script>';
-        exit();
-  }
-  }
 }
-  
-      
-      // Authentication failed, redirect back to the login page with an error message
-  header('Location: Login.php?error=' . urlencode('Invalid email or password'));
-  exit();
-}
-        
-        
-        
-        ?>
+
+?>
 
 
 <!DOCTYPE html>
@@ -89,7 +83,7 @@ if (mysqli_stmt_num_rows($stmt) == 1) {
             <a href="Login.html">Login Page</a>  
         </div>
         <div class="form">
-            <form id="login-form" action="Login.php" method="post">
+            <form id="login-form" method="post">
          <div>
                   
             <br>
@@ -147,35 +141,7 @@ if (mysqli_stmt_num_rows($stmt) == 1) {
 </footer>
    
     <script>
-        
-              
-//        document.addEventListener('DOMContentLoaded', function() {
-//  // Get the radio buttons and submit button
-//  var userTypeRadios = document.getElementsByName('Type');
-//  var loginForm = document.getElementById('login-form');
-//
-//  // Add event listener to the form submission
-//  loginForm.addEventListener('submit', function(event) {
-//    event.preventDefault(); // Prevent the default form submission
-//
-//    // Check which radio button is selected
-//    for (var i = 0; i < userTypeRadios.length; i++) {
-//      if (userTypeRadios[i].checked) {
-//        // Redirect to the appropriate page based on the selected value
-//        if (userTypeRadios[i].value === 'interior') {
-//          window.location.href = 'DesignerHomePage.html';
-//        } else if (userTypeRadios[i].value === 'client') {
-//          window.location.href = 'ClientHomePage.html';
-//        }
-//        break; // Exit the loop once a selection is found
-//      }
-//    }
-//  });
-//});
-//
-//        
-//        
-    
+   
     </script>
 
 </body>
