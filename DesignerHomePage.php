@@ -1,3 +1,10 @@
+    <?php 
+session_start();
+if(isset($_SESSION['id']) && isset($_SESSION['type'])){
+    $designerID = $_SESSION['id']; 
+    $Type = $_SESSION['type'];
+}
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -9,7 +16,8 @@
         <link rel="stylesheet" href="DesignerHomePage.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
-    <?php 
+
+    <?php
         $host="localhost";
         $user="root";
         $pass="root";
@@ -21,8 +29,6 @@
          $output="<p>can not connect to databsase</p>".$error;
          exit($output);
          } else {
-           session_start();
-           $designerID = $_SESSION['id'];
            $query1 = "SELECT * FROM Designer WHERE id = $designerID";
            $result1 = mysqli_query($connection, $query1);
          }
@@ -55,7 +61,7 @@
     echo '<span>Last name:</span> ' . $lastName . '<br>';
     echo '<span>Email address:</span> <a href="mailto:' . $emailAddress . '">' . $emailAddress . '</a><br>';
     echo '<span>Brand Name:</span> ' . $brandName . '<br>';
-    echo '<span>Category:</span> ';
+    echo '<span>Category:</span>';
     $query4 = "SELECT designCategoryID FROM DesignerSpeciality WHERE designerID=$designerID";
     $result4 = mysqli_query($connection, $query4);
     if ($result4) 
@@ -66,12 +72,9 @@
             $query5 = "SELECT category FROM DesignCategory WHERE id=$catid";
             $result5 = mysqli_query($connection, $query5);
             if ($result5) 
-            { 
-                
+            {
                 $row3 = mysqli_fetch_assoc($result5);
-                
-                 echo $row3['category']." ";
-                
+                echo  $row3['category']." " ;
             } else 
             {
                 echo 'Error fetching design category: ' . mysqli_error($connection);
@@ -100,8 +103,7 @@
                     
                 </div>
             </div>
-
-             <table id="table1">
+            <table id="table1">
                  <tr>
                 <th>Project Name</th>
                 <th>Image</th>
@@ -189,7 +191,6 @@
                 </div>
 
                 <var></var>
-
                 <div class="col2">
                     <h3>Contact us</h3>
                     <ul>

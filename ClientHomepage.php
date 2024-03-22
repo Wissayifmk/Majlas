@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(isset($SESSION['id']) && isset($SESSION['type'])){
+if(isset($_SESSION['id']) && isset($_SESSION['type'])){
     $ClientID = $_SESSION['id']; 
     $Type = $_SESSION['type'];
 }
@@ -33,13 +33,12 @@ if(isset($SESSION['id']) && isset($SESSION['type'])){
                     echo '<p>failed</p>';
                     die(mysqli_connect_error());
                 }
-                $sql="SELECT * FROM Client WHERE id='1'"; //CHANGE IT TO $clientID
+                $sql="SELECT * FROM Client WHERE id='$ClientID'"; //CHANGE IT TO $clientID
                 $result= mysqli_query($connection, $sql);
                 $row= mysqli_fetch_assoc($result);
                 echo '<h2>Welcome <span>'.$row['firstName'].'</span></h2> ';
                 
                 ?>
-<!--                <h2>Welcome <span>Maryam</span></h2> -->
                 <div class="clientInfo">
                     <h3>Client's Information:</h3>
                     <p>
@@ -76,33 +75,20 @@ if(isset($SESSION['id']) && isset($SESSION['type'])){
                             <form action="ClientHomepage.php" method="POST">
                                 <select name="cat" id="cat">
                                     <?php 
-                                        $sql="SELECT * FROM DesignCategory";
+                                        $sql="SELECT * FROM designcategory";
                                         $result= mysqli_query($connection, $sql);
                                         while ($row= mysqli_fetch_assoc($result)){
                                             echo '<option value="'.$row['id'].'">'.$row['category'].'</option>';
                                         }
-//                                        
-//                                    <option value="Coastal">Coastal</option>
-//                                    <option value="Minimalist">Minimalist</option>
-//                                    <option value="Traditional">Traditional</option>
                                     ?>
                                 </select>
-                            
-<!--                            <ul>
-                                <li>Modern</li>
-                                <li>Mid-century Modern</li>
-                                <li>Traditional</li>
-                                <li>Coastal</li>
-                                <li>Minimalist</li>
-                                <li>Country</li>
-                            </ul>-->
+
+                         
 <!--                        </div>-->
                       </div> 
                     <button type="submit" class="btn">Filter</button>
                     </form>
-<!--                    <button type="button" class="btn" onclick="window.location.href = 'ClientHomePage.html'" >
-                        Filter
-                    </button>-->
+
                 </div>
             </div>
 
@@ -153,16 +139,7 @@ if(isset($SESSION['id']) && isset($SESSION['type'])){
                     }
                     
                 ?>
-<!--                <tr>
-                    <td class="image"><a href="DesignPortfolio.html"><img src="image/RahafLogo.PNG" alt="Rahaf's Logo"></a><br> <a href="DesignPortfolio.html" class="desName">Rahaf Alateeq</a></td>
-                    <td>Contemporary, <br>Modern</td>
-                    
-                </tr>-->
-<!--                <tr>
-                    <td class="image"><a href="DesignPortfolio.html"><img src="image/khadijaLogo.PNG" alt="Rahaf's Logo"></a><br> <a href="DesignPortfolio.html" class="desName">Khadija Altuwaijri</a></td>
-                    <td>Art Modern, <br>Scandinavian</td>
-                    <td><a href="RequestDesignConsultation.html">Request Design Consultation</a></td>
-                </tr>-->
+
             </table>
         </div>
         </div>
@@ -184,7 +161,7 @@ if(isset($SESSION['id']) && isset($SESSION['type'])){
                     <th>Design Consultation</th>
                 </tr>
                 <?php
-                    $sql="SELECT * FROM DesignConsultationRequest WHERE clientID='2'"; //CHANGE IT TO $clientID
+                    $sql="SELECT * FROM DesignConsultationRequest WHERE clientID='$ClientID'"; //CHANGE IT TO $clientID
                     $result= mysqli_query($connection, $sql);
 //                    $row= mysqli_fetch_assoc($result);
                     while ($row= mysqli_fetch_assoc($result)){
@@ -218,34 +195,6 @@ if(isset($SESSION['id']) && isset($SESSION['type'])){
                         
                     }
                 ?>
-                
-<!--                <tr>
-                    <td><img src="image/Tomsent.jpg" alt="Tomsent's Logo"><br><p>Tomsent Furniture</p></td>
-                    <td>Living Room</td>
-                    <td>4x5m</td>
-                    <td>Modern</td>
-                    <td>Blue and Whit</td>
-                    <td>1/2/2023</td>
-                    <td>Pending Consultation</td>
-                </tr>
-                <tr>
-                    <td><img src="image/khadijaLogo.PNG" alt="Rahaf's Logo"><br><p>Khadija Altuwaijri</p></td>
-                    <td>Bed Room</td>
-                    <td>3x4m</td>
-                    <td>Coastal</td>
-                    <td>Beige and Green</td>
-                    <td>30/12/2023</td>
-                    <td>Consultation Declined</td>
-                </tr>
-                <tr>
-                    <td><img src="image/RahafLogo.PNG" alt="Rahaf's Logo"><br> <p>Rahaf Alateeq</p></td>
-                    <td>Kitchen</td>
-                    <td>3x4m</td>
-                    <td>Minimalist</td>
-                    <td>Gray and White</td>
-                    <td>1/1/2024</td>
-                    <td><p>I will listen to your project requirements and goals, gaining a thorough understanding of your needs. We will discuss your target audience, conduct research, and gather inspiration to inform the design process.</p><br><img src="image/sketch.jpg" alt="designer's consulation" class="conImg"></td>
-                </tr>-->
             </table>
         </div>
         </div>
