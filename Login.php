@@ -45,7 +45,7 @@ if (mysqli_connect_errno()) {
                     header('Location: DesignerHomePage.php');
                     exit();
                 }
-            }
+            }//
         }
 
         // Authentication failed, redirect back to the login page with an error message
