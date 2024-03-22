@@ -21,7 +21,6 @@ if ($error != null) {
     exit($output);
 } else {
     $Did = $_GET['designerID'];
-    
 }
 ?>
 
@@ -54,54 +53,54 @@ if ($error != null) {
                 <h1>Request design consultation</h1>
                 <br><div class="AllForm">
                     <?php
-                    echo '<form action="addRequestDesignConsultation.php?clientID='. $ClientID.'" method="POST">';
+                    echo '<form action="addRequestDesignConsultation.php?clientID=' . $ClientID . '" method="POST">';
                     ?>                    
-                        <fieldset>
-                            <legend>Request design consultation form</legend>       
-                            <br>
-                            <label>Room Type: 
-                                <select name="roomType" id="roomType" required >
-                                    <option value="Bedroom">Bedroom</option>
-                                    <option value="Kitchen">Kitchen</option>
-                                    <option value="LivingRoom">Living Room</option>
-                                    <option value="DiningRoom">Dining Room</option>
-                                </select>
-                            </label>
-                            <br>
-                            <?php
-                            echo '<input type="hidden" name="desId" value="' . $_GET['designerID'] . '">';
-                            ?>
-                            <p>Room dimensions:</p>
-                            <label>
-                                Width:
-                                <input type="text" name="width" class="input" placeholder='in meters' required>
-                            </label>
-                            <br>
-                            <label>
-                                height:
-                                <input type="text" name="height" class="input" placeholder='in meters' required>
-                            </label>
-                            <br>
-                            <label>
-                                Design category: 
-                                <select name="DesignCategory" id="DesignCategory" required>
-                                    <option value="Modern">Modern</option>
-                                    <option value="Mid-century modern">Mid-century modern</option>
-                                    <option value="Coastal">Coastal</option>
-                                    <option value="Minimalist">Minimalist</option>
-                                    <option value="Country">Country</option>
-                                </select>
-                            </label>
-                            <br>
-                            <label>
-                                Color preferences: <input type="text" name="Color" class="input" placeholder="Enter your color preferences" id="COLOR" required>
-                            </label>
-                            <br><br>
-                            <button type="submit" value="submit">
-                               submit
-                            </button>
+                    <fieldset>
+                        <legend>Request design consultation form</legend>       
+                        <br>
+                        <label>Room Type: 
+                            <select name="roomType" id="roomType" required >
+                                <option value="Bedroom">Bedroom</option>
+                                <option value="Kitchen">Kitchen</option>
+                                <option value="LivingRoom">Living Room</option>
+                            </select>
+                        </label>
+                        <br>
+                        <?php
+                        echo '<input type="hidden" name="desId" value="' . $_GET['designerID'] . '">';
+                        ?>
+                        <p>Room dimensions:</p>
+                        <label>
+                            Width:
+                            <input type="text" name="width" class="input" placeholder='in meters' required>
+                        </label>
+                        <br>
+                        <label>
+                            height:
+                            <input type="text" name="height" class="input" placeholder='in meters' required>
+                        </label>
+                        <br>
+                        <label>
+                            Design category: 
+                            <select name="DesignCategory" id="DesignCategory" required>
+                                <option value="Modern">Modern</option>
+                                <option value="Mid-century modern">Mid-century modern</option>
+                                <option value="Coastal">Coastal</option>
+                                <option value="Minimalist">Minimalist</option>
+                                <option value="Country">Country</option>
+                            </select>
+                        </label>
+                        <br>
+                        <label>
+                            Color preferences: <input type="text" name="Color" class="input" placeholder="Enter your color preferences" id="COLOR" required>
+                        </label>
+                        <br><br>
+                        <button class="btn" type="submit" >
+                            <span class="btn__visible">Send</span>
+                            <span class="btn__invisible">Thank you :)</span>
+                        </button>
 
-                        </fieldset>
+                    </fieldset>
                     </form>
 
                 </div>
