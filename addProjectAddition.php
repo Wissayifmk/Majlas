@@ -21,13 +21,17 @@ if(isset($_SESSION['id']) && isset($_SESSION['type'])){
         
 
         
-$sql = "INSERT INTO designportoflioproject (designerID, projectName, projectImgFileName, description, designCategoryID) VALUES ('$designerID', '$projectName', '$projectImage', '$projectDescription', '$designCategory')";
-$result = mysqli_query($connection, $sql);
+    $sql = "INSERT INTO designportoflioproject (designerID, projectName, projectImgFileName, description, designCategoryID) VALUES (?, ?, ?, ?, ?)";
+    if ($statementt = mysqli_prepare($connection, $sql)){
+        mysqli_stmt_bind_param($statementt, "isssi", $designerID, $projectName, $projectImage, $projectDescription, $designCategory);
 
-if ($result) {
-    header('Location: DesignerHomePage.php?id='.$designerID);
-    exit();
-} else {
-    echo 'Error: ' . mysqli_error($connection);
-}
+    }
+    $result = mysqli_stmt_execute($statementt);
+
+    if ($result) {
+        header('Location: DesignerHomePage.php?id='.$designerID);
+    } else {
+        echo 'Error: ' . mysqli_error($connection);
+    }
+
  }
