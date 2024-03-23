@@ -18,7 +18,7 @@ $host="localhost";
             $deleteResult = mysqli_query($connection, $deleteQuery);
              if ($deleteResult) 
              {
-             header("Location: DesignerHome.php"); //DesignerHomePage
+             header("Location: DesignerHomePage.php"); 
              exit();
              } else {
                      echo 'Error deleting the project from the database.';
