@@ -1,4 +1,4 @@
-    <?php 
+<?php 
 session_start();
 if(isset($_SESSION['id']) && isset($_SESSION['type'])){
     $designerID = $_SESSION['id']; 
@@ -31,6 +31,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['type'])){
          } else {
            $query1 = "SELECT * FROM Designer WHERE id = $designerID";
            $result1 = mysqli_query($connection, $query1);
+   
          }
     ?>
     
@@ -45,7 +46,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['type'])){
             <section class="part0">
                 <div class="headerContent">
               <?php
-              if ($result1 && mysqli_num_rows($result1) > 0) {
+              if ($result1 && mysqli_num_rows($result1) > 0) {//check when log in 
                   $designer = mysqli_fetch_assoc($result1);
                   $firstName = $designer['firstName'];
                   $lastName = $designer['lastName'];
@@ -93,7 +94,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['type'])){
 ?>
                 </div>
                 <span class="imgHover">
-                    <?php  echo '<img src="image/' . $logoImgFileName . '" alt="designer logo" id="image0">'; ?> 
+                    <?php  echo '<img src="image/' . $logoImgFileName . '" alt="designer logo" id="image0" width=80%>'; ?> 
                 </span>
             </section>   
             <div class="desHeader">
@@ -127,11 +128,11 @@ if(isset($_SESSION['id']) && isset($_SESSION['type'])){
                    echo '<tr>';
                    echo '<td>' . $projectName . '</td>';
                    echo '<td><img src="image/' . $imageFileName 
-                           . '" alt="project image" id="image' . $projectID . '"></td>';
+                           . '" alt="project image" id="image' . $projectID . '" width=50%></td>';
                    echo '<td>' . $designCategory . '</td>';
                    echo '<td>' . $description . '</td>';
                    
-                   echo '<td><a href="ProjectUpdate.php?id=' . $projectID . '">Edit</a></td>'; //name of the page
+                   echo '<td><a href="ProjectUpdate.php?id=' . $projectID . '">Edit</a></td>'; //name of the page + work or not
                    echo '<td><a href="ProjectDelete.php?id=' . $projectID . '">Delete</a></td>';
                    echo '</tr>';
                     }
@@ -153,7 +154,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['type'])){
                </tr>
               <?php 
                  
-                
+                //check the query
                 $query3 = "SELECT dcr.id, c.firstName AS clientFName, c.lastName AS clientLName, rt.type AS roomType, dc.category AS designCategory, dcr.roomWidth, dcr.roomLength, dcr.colorPreferences, dcr.date
            FROM DesignConsultationRequest dcr
            INNER JOIN Client c ON dcr.clientID = c.id
