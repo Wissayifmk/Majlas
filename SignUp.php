@@ -55,8 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $brandLogo = $_POST['BrandLogo'];
                 $category = $_POST['Category'];
 
-                $sqlInsert = "INSERT INTO designer (firstName, lastName, emailAddress, password, brandName, logoImgFileName)"
-                    . " VALUES (?, ?, ?, ?, ?, ?)";
+                $sqlInsert = "INSERT INTO designer (firstName, lastName, emailAddress, password, brandName, logoImgFileName) VALUES (?, ?, ?, ?, ?, ?)";
                 $Pstmt = mysqli_prepare($connection, $sqlInsert);
                 mysqli_stmt_bind_param($Pstmt, "ssssss", $FName, $LName, $email, $passwordHashed, $brandName, $brandLogo);
 
@@ -70,17 +69,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         if ($result) {
                             $row = mysqli_fetch_assoc($result);
 
-                            if ($row !== null) {
+                            if ($row != null) {
                                 $catID = $row['id'];
 
                                 if (!empty($catID)) {
-                                    $sqlInsert = "INSERT INTO designerspeciality (designerID, designCategoryID) VALUES ('$LastID', '$catID')";
-                                    $result = mysqli_query($connection, $sqlInsert);
-
-                                    if (!$result) {
-                                        echo 'Failed to insert designer category.';
-                                    } 
-                                    }
+                                    $sqlInsertCategory = "INSERT INTO designerspeciality (designerID, designCategoryID) VALUES ('$LastID', '$catID')";
+                                    mysqli_query($connection, $sqlInsertCategory);
                                 }
                             }
                         }
@@ -94,6 +88,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
     }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
