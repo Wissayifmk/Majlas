@@ -1,0 +1,136 @@
+
+main{
+    text-align: center;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.7) 100%, transparent), url(image/modrenMaj.png);
+    height: 700px;
+    Margin-top:-4em;
+}
+
+#note{
+    font-size: smaller;
+}
+
+h1{
+    color: #881817;
+}
+fieldset{
+    color: #881817;
+    font-size: x-large;
+    height: auto;
+    width: 500px;
+    border-radius: 20px;
+    margin: auto;
+    padding: 10px;
+    font-weight: lighter;
+    height: 400px;
+}
+.input {
+    line-height: 28px;
+    border: 2px solid transparent;
+    border-bottom-color: #777;
+    padding: .2rem 0;
+    outline: none;
+    background-color: transparent;
+    color: #0d0c22;
+    transition: .3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    width:auto;
+    height:30px;
+}
+
+.input:focus, input:hover {
+    outline: none;
+    padding: .2rem 1rem;
+    border-radius: 1rem;
+    border-color: #8819177a;
+}
+
+.input::placeholder {
+    color: #881817;
+    font-weight: lighter;
+    opacity: 0.7;
+}
+
+.input:focus::placeholder {
+    opacity: 0;
+    transition: opacity .3s;
+}
+.AllForm{
+    width: 39%;
+    margin: auto;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.675);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+
+}
+
+.formBody{
+    flex-direction: column;
+    justify-content: center;
+}
+
+.btn {
+    font-size: 14px;
+    font-weight: 300;
+    text-transform: uppercase;
+    line-height: 8px;
+    border-radius: 30px;
+    border: none;
+    background-color: #881817;
+    color: white;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.btn > * {
+    display: inline-block;
+    transition: all ease-in-out .5s;
+}
+
+.btn__visible {
+    padding: 1.2rem 3rem;
+    text-align: center;
+}
+
+.btn__invisible {
+    width: 100%;
+    position: absolute;
+    padding: 1.2rem 0;
+    left: 0;
+    top: -100%;
+}
+
+.btn:hover {
+    background-color: #881817;
+}
+
+.btn:hover .btn__visible {
+    transform: translateY(100%);
+}
+
+.btn:hover .btn__invisible {
+    top: 0;
+}
+
+.btn:focus {
+    outline: none;
+}
+#roomType, #DesignCategory{
+    border: 1px solid black;
+    border-radius: 5px;
+    font-family: 'Courier New', Courier, monospace;
+    padding-left: 8px;
+    margin-left: 4px ;
+    font-size: 16px;
+}
+#COLOR{
+    width: 200px;
+}
+
+#roomType{
+    width: 120px;
+}
+#DesignCategory{
+    width: 180px;
+}
