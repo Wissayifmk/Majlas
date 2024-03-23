@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (isset($SESSION['id']) && isset($SESSION['type'])) {
+if (isset($_SESSION['id']) && isset($_SESSION['type'])) {
     $DesignertID = $_SESSION['id'];
     $Type = $_SESSION['type'];
 }
