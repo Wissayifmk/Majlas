@@ -1,11 +1,7 @@
+ <?php
+require 'checkSecurity';
+?>
 <?php
-session_start();
-if(isset($_SESSION['id']) && isset($_SESSION['type'])){
-    $designerID = $_SESSION['id']; 
-    $Type = $_SESSION['type'];
-    
-    
-}
            $connection = mysqli_connect("localhost", "root", "root", "majlas");
         if (mysqli_connect_errno()) {
         // Check connection
@@ -23,15 +19,16 @@ if(isset($_SESSION['id']) && isset($_SESSION['type'])){
         
     $sql = "INSERT INTO designportoflioproject (designerID, projectName, projectImgFileName, description, designCategoryID) VALUES (?, ?, ?, ?, ?)";
     if ($statementt = mysqli_prepare($connection, $sql)){
-        mysqli_stmt_bind_param($statementt, "isssi", $designerID, $projectName, $projectImage, $projectDescription, $designCategory);
+        mysqli_stmt_bind_param($statementt, "isssi", $DesignerID, $projectName, $projectImage, $projectDescription, $designCategory);
 
     }
     $result = mysqli_stmt_execute($statementt);
 
     if ($result) {
-        header('Location: DesignerHomePage.php?id='.$designerID);
+        header('Location: DesignerHomePage.php?id='.$DesignerID);
     } else {
         echo 'Error: ' . mysqli_error($connection);
     }
 
  }
+ ?>
