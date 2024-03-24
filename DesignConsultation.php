@@ -1,5 +1,5 @@
 <?php
-require 'checkSecurity';
+require 'checkSecurity.php';
 ?>
 <?php
 error_reporting(E_ALL);
