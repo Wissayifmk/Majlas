@@ -107,10 +107,10 @@ require 'checkSecurity.php';
                             echo '<tr><td class="image"><a href="DesignPortfolio.php?id='.$row2['id'].'"><img src="image/'.$row2['logoImgFileName'].'" alt="'.$row2['firstName'].'\'s Logo"></a><br> <a href="DesignPortfolio.php?id='.$row2['id'].'" class="desName">'.$row2['firstName'].' '.$row2['lastName'].'</a></td>';
                             $sql3 = "SELECT category FROM DesignCategory WHERE id='" . $row['designCategoryID'] . "'"; //؟؟؟؟؟؟؟؟؟؟؟؟؟؟؟؟But it's POST req???????????????????
                             $result3= mysqli_query($connection, $sql3);
-                            $row3= mysqli_fetch_assoc($result3);
+                            while($row3= mysqli_fetch_assoc($result3))
                             echo '<td>'.$row3['category'].'</td>';
                                                             
-                            echo '<td><a href="RequestDesignConsultation.php?designerID='.$row['designerID'].'">Request Design Consultation</a></td>'; //?????????designerID or id?????????????? 
+                            echo '<td><a href="RequestDesignConsultation.php?designerID='.$row['designerID'].'">Request Design Consultation</a></td></tr>'; //?????????designerID or id?????????????? 
                             
                         }
                         
@@ -130,7 +130,7 @@ require 'checkSecurity.php';
                             $row3= mysqli_fetch_assoc($result3);
                             echo '<td>'.$row3['category'].'</td>';
                                                             
-                            echo '<td><a href="RequestDesignConsultation.php?designerID='.$row['designerID'].'">Request Design Consultation</a></td>'; //?????????designerID or id?????????????? 
+                            echo '<td><a href="RequestDesignConsultation.php?designerID='.$row['designerID'].'">Request Design Consultation</a></td></tr>'; //?????????designerID or id?????????????? 
                         }
                     }
                     
