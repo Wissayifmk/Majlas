@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 if(isset( $_SESSION['id']) && isset($_SESSION['type'])){
     if($_SESSION['type'] == "client"){
         $ClientID = $_SESSION['id']; 
