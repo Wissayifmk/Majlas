@@ -1,9 +1,5 @@
 <?php
-session_start();
-if (isset($_SESSION['id']) && isset($_SESSION['type'])) {
-    $DesignertID = $_SESSION['id'];
-    $Type = $_SESSION['type'];
-}
+require 'checkSecurity';
 ?>
 <?php
 error_reporting(E_ALL);
