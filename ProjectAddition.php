@@ -1,12 +1,7 @@
-    <?php 
-session_start();
-if(isset($_SESSION['id']) && isset($_SESSION['type'])){
-    $designerID = $_SESSION['id']; 
-    $Type = $_SESSION['type'];
-    
-    
-}
-
+<?php
+require 'checkSecurity';
+?>
+<?php 
 $connection = mysqli_connect("localhost", "root", "root", "majlas");
         if (mysqli_connect_errno()) {
         // Check connection
@@ -14,6 +9,7 @@ $connection = mysqli_connect("localhost", "root", "root", "majlas");
         }
 
        ?>
+
     <!DOCTYPE html>
 <html lang="en">
     <head>
