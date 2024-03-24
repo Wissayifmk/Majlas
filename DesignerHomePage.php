@@ -166,7 +166,7 @@ require 'checkSecurity.php';
                             echo '<td>' . $row["roomType"] . '</td>';
                             echo '<td>' . $row["roomWidth"] . 'x' . $row["roomLength"] . '</td>';
                             echo '<td>' . $row["designCategory"] . '</td>';
-                            echo '<td>' . $row["colorPrefrences"] . '</td>';
+                            echo '<td>' . $row["colorPreferences"] . '</td>';
                             echo '<td>' . $row["date"] . '</td>';
                             echo '<td><a href="DesignConsultation.php?id=' . $row['id'] . '">Provide Consultation</a></td>';
                             echo '<td><a href="DeclineConsultation.php?id=' . $row['id'] . '">Decline Consultation</a></td>';
