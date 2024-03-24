@@ -1,58 +1,67 @@
 
 <?php
-session_start();
 
-// Create a new mysqli connection
-$connection = mysqli_connect("localhost", "root", "root", "majlas");
-if (mysqli_connect_errno()) {
-    // Check connection
-    die("Connection Error" . mysqli_connect_error());
-} else  {
+
+
     // Check if the form has been submitted
-    if (isset($_POST['submit'])) {
+    if ($_SERVER['REQUEST_METHOD'] =='POST') {
         $email = $_POST['Email'];
         $password = $_POST['password'];
         $usertype = $_POST['Type'];
+        
+        // Create a new mysqli connection
+      $connection = mysqli_connect("localhost", "root", "root", "majlas");
+       if (mysqli_connect_errno()) {
+       // Check connection
+        die("Connection Error" . mysqli_connect_error());
+}
 
         // Prepare the SQL statement based on the user type
         if ($usertype == 'client') {
-            $table = 'client';
-        } else if ($usertype == 'interior') {
-            $table = 'designer';
-        }
-
-        $sql = "SELECT id, password FROM $table WHERE emailAddress = ?";
-        $stmt = mysqli_prepare($connection, $sql);
-        mysqli_stmt_bind_param($stmt, 's', $email);
-        mysqli_stmt_execute($stmt);
-        mysqli_stmt_store_result($stmt);
-
-        if (mysqli_stmt_num_rows($stmt) == 1) {
-            mysqli_stmt_bind_result($stmt, $id, $hashedPassword);
-            mysqli_stmt_fetch($stmt);
-
-            // Verify the password
-            if (password_verify($password, $hashedPassword)) {
-                // Set the session variables
-                $_SESSION['user_id'] = $id;
+        $sql = "SELECT * FROM client WHERE emailAddress = '$email'";
+        $result = mysqli_query($connection, $sql);
+        if($result && mysqli_num_rows($result)>0){
+            $row = mysqli_fetch_assoc($result);
+            if(password_verify($password, $row['password'])){
+                session_start();
+                $_SESSION['user_id'] = $row['id'];
                 $_SESSION['user_type'] = $usertype;
-
-                // Redirect to the appropriate homepage based on the user type
-                if ($usertype == 'client') {
-                    header('Location: ClientHomepage.php');
-                    exit();
-                } else if ($usertype == 'interior') {
-                    header('Location: DesignerHomePage.php');
-                    exit();
-                }
-            }//
+                header('Location: ClientHomepage.php');
+                exit();
+            }
+            else {
+                header('Location: Login.php?message=Invalid password or email');
+                exit();
+            }
+        }else {
+                header('Location: Login.php?message=user not found');
+                 exit();
+            }
+        } else {$sql = "SELECT * FROM designer WHERE emailAddress = '$email'";
+        $result = mysqli_query($connection, $sql);
+        if($result && mysqli_num_rows($result)>0){
+            $row = mysqli_fetch_assoc($result);
+            if(password_verify($password, $row['password'])){
+                session_start();
+                $_SESSION['user_id'] = $row['id'];
+                $_SESSION['user_type'] = $usertype;
+                header('Location: DesignerHomePage.php');
+                exit();
+            }
+            else {
+                header('Location: Login.php?message=Invalid password or email');
+                exit();
+            }
+        }else {
+                header('Location: Login.php?message=user not found');
+                 exit();
+            }
+            
         }
-
-        // Authentication failed, redirect back to the login page with an error message
-        header('Location: Login.html?error=' . urlencode('Invalid email or password'));
-        exit();
-    }
-}
+        }
+        
+        
+       
 
 ?>
 
@@ -63,8 +72,8 @@ if (mysqli_connect_errno()) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login page</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="login.css">
+ 
+  <link rel="stylesheet" href="login2.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
  
 </head>
