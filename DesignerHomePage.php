@@ -1,9 +1,5 @@
-<?php 
-session_start();
-if(isset($_SESSION['id']) && isset($_SESSION['type'])){
-    $designerID = $_SESSION['id']; 
-    $Type = $_SESSION['type'];
-}
+<?php
+require 'checkSecurity';
 ?>
 <!DOCTYPE html>
 <html>
@@ -29,7 +25,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['type'])){
          $output="<p>can not connect to databsase</p>".$error;
          exit($output);
          } else {
-           $query1 = "SELECT * FROM Designer WHERE id = $designerID";
+           $query1 = "SELECT * FROM Designer WHERE id = $DesignerID";
            $result1 = mysqli_query($connection, $query1);
    
          }
@@ -63,7 +59,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['type'])){
     echo '<span>Email address:</span> <a href="mailto:' . $emailAddress . '">' . $emailAddress . '</a><br>';
     echo '<span>Brand Name:</span> ' . $brandName . '<br>';
     echo '<span>Category:</span>';
-    $query4 = "SELECT designCategoryID FROM DesignerSpeciality WHERE designerID=$designerID";
+    $query4 = "SELECT designCategoryID FROM DesignerSpeciality WHERE designerID=$DesignerID";
     $result4 = mysqli_query($connection, $query4);
     if ($result4) 
     {
@@ -114,7 +110,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['type'])){
                 <th>Delete</th>
                 </tr>
             <?php 
-            $query2 = "SELECT * FROM DesignPortoflioProject WHERE designerID = $designerID";
+            $query2 = "SELECT * FROM DesignPortoflioProject WHERE designerID = $DesignerID";
             $result2 = mysqli_query($connection, $query2);
             if ($result2 && mysqli_num_rows($result2) > 0) {
   
