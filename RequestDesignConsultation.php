@@ -1,5 +1,5 @@
 <?php
-require 'checkSecurity';
+require 'checkSecurity.php';
 ?>
 
 <!DOCTYPE html>
