@@ -1,11 +1,7 @@
-
 <?php
-session_start();
-if (isset($_SESSION['id']) && isset($_SESSION['type'])) {
-    $ClientID = $_SESSION['id'];
-    $Type = $_SESSION['type'];
-}
+require 'checkSecurity';
 ?>
+
 <!DOCTYPE html>
 <?php
 error_reporting(E_ALL);
