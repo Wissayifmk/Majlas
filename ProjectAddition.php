@@ -1,5 +1,5 @@
 <?php
-require 'checkSecurity';
+require 'checkSecurity.php';
 ?>
 <?php 
 $connection = mysqli_connect("localhost", "root", "root", "majlas");
