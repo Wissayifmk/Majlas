@@ -107,9 +107,11 @@ require 'checkSecurity.php';
                             echo '<tr><td class="image"><a href="DesignPortfolio.php?id='.$row2['id'].'"><img src="image/'.$row2['logoImgFileName'].'" alt="'.$row2['firstName'].'\'s Logo"></a><br> <a href="DesignPortfolio.php?id='.$row2['id'].'" class="desName">'.$row2['firstName'].' '.$row2['lastName'].'</a></td>';
                             $sql3 = "SELECT category FROM DesignCategory WHERE id='" . $row['designCategoryID'] . "'"; //؟؟؟؟؟؟؟؟؟؟؟؟؟؟؟؟But it's POST req???????????????????
                             $result3= mysqli_query($connection, $sql3);
-                            while($row3= mysqli_fetch_assoc($result3))
-                            echo '<td>'.$row3['category'].'</td>';
-                                                            
+                            echo '<td>';
+                            while($row3= mysqli_fetch_assoc($result3)){
+                            echo $row3['category'].',';
+                            }
+                            echo ' </td>';
                             echo '<td><a href="RequestDesignConsultation.php?designerID='.$row['designerID'].'">Request Design Consultation</a></td></tr>'; //?????????designerID or id?????????????? 
                             
                         }
@@ -117,20 +119,22 @@ require 'checkSecurity.php';
 //                        
                     }
                     else if ($_SERVER['REQUEST_METHOD']=="GET"){ //
-                        $sql="SELECT * FROM DesignerSpeciality";
+                        $sql="SELECT * FROM Designer";
                         $result= mysqli_query($connection, $sql);
-                        
                         while ($row= mysqli_fetch_assoc($result)){
-                            $sql2 = "SELECT * FROM Designer WHERE id='" . $row['designerID'] . "'";
+                            echo '<tr><td class="image"><a href="DesignPortfolio.php?id='.$row['id'].'"><img src="image/'.$row['logoImgFileName'].'" alt="'.$row['firstName'].'\'s Logo"></a><br> <a href="DesignPortfolio.php?id='.$row['id'].'" class="desName">'.$row['firstName'].' '.$row['lastName'].'</a></td>';
+                            $sql2 = "SELECT * FROM designerspeciality WHERE designerID='" . $row['id'] . "'";
                             $result2= mysqli_query($connection, $sql2);
-                            $row2= mysqli_fetch_assoc($result2);
-                            echo '<tr><td class="image"><a href="DesignPortfolio.php?id='.$row2['id'].'"><img src="image/'.$row2['logoImgFileName'].'" alt="'.$row2['firstName'].'\'s Logo"></a><br> <a href="DesignPortfolio.php?id='.$row2['id'].'" class="desName">'.$row2['firstName'].' '.$row2['lastName'].'</a></td>';
-                            $sql3 = "SELECT category FROM DesignCategory WHERE id='" . $row['designCategoryID'] . "'"; //؟؟؟؟؟؟؟؟؟؟؟؟؟؟؟؟But it's POST req???????????????????
+                            echo '<td>';
+                            while($row2= mysqli_fetch_assoc($result2)){
+                            $sql3 = "SELECT category FROM designcategory WHERE id='" . $row2['designCategoryID'] . "'"; 
                             $result3= mysqli_query($connection, $sql3);
                             $row3= mysqli_fetch_assoc($result3);
-                            echo '<td>'.$row3['category'].'</td>';
-                                                            
-                            echo '<td><a href="RequestDesignConsultation.php?designerID='.$row['designerID'].'">Request Design Consultation</a></td></tr>'; //?????????designerID or id?????????????? 
+//                          while($row3= mysqli_fetch_assoc($result3)){
+                            echo $row3['category'].', ';
+                            }
+                            echo '</td>';
+                            echo '<td><a href="RequestDesignConsultation.php?designerID='.$row['id'].'">Request Design Consultation</a></td></tr>'; //?????????designerID or id?????????????? 
                         }
                     }
                     
