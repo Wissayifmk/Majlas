@@ -94,47 +94,64 @@ require 'checkSecurity.php';
                     <th>Specialty</th>
                 </tr>
                 <?php 
-                
-                    if($_SERVER['REQUEST_METHOD']=="POST"){
-                        $catID=$_POST['cat'];
-                        $sql="SELECT * FROM DesignerSpeciality WHERE designCategoryID='$catID'";
-                        $result= mysqli_query($connection, $sql);
-                        
-                        while ($row= mysqli_fetch_assoc($result)){
-                            $sql2 = "SELECT * FROM Designer WHERE id='" . $row['designerID'] . "'";
-                            $result2= mysqli_query($connection, $sql2);
-                            $row2= mysqli_fetch_assoc($result2);
-                            echo '<tr><td class="image"><a href="DesignPortfolio.php?id='.$row2['id'].'"><img src="image/'.$row2['logoImgFileName'].'" alt="'.$row2['firstName'].'\'s Logo"></a><br> <a href="DesignPortfolio.php?id='.$row2['id'].'" class="desName">'.$row2['firstName'].' '.$row2['lastName'].'</a></td>';
-                            $sql3 = "SELECT category FROM DesignCategory WHERE id='" . $row['designCategoryID'] . "'"; //؟؟؟؟؟؟؟؟؟؟؟؟؟؟؟؟But it's POST req???????????????????
-                            $result3= mysqli_query($connection, $sql3);
-                            echo '<td>';
-                            while($row3= mysqli_fetch_assoc($result3)){
-                            echo $row3['category'].',';
+                    if ($_SERVER['REQUEST_METHOD'] == "POST") {
+                        $catID = $_POST['cat'];
+                        $sql = "SELECT * FROM DesignerSpeciality WHERE designCategoryID='$catID'";
+                        $result = mysqli_query($connection, $sql);
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            $sql2 = "SELECT * FROM Designer WHERE id='".$row['designerID']."'";
+                            $result2 = mysqli_query($connection, $sql2);
+                            while ($row2 = mysqli_fetch_assoc($result2)) {
+                                echo '<tr><td class="image"><a href="DesignPortfolio.php?id='.$row2['id'].'"><img src="image/'.$row2['logoImgFileName'].'" alt="'.$row2['firstName'].'\'s Logo"></a><br> <a href="DesignPortfolio.php?id='.$row2['id'].'" class="desName">'.$row2['firstName'].' '.$row2['lastName'].'</a></td>';
+                                $sql3 = "SELECT * FROM DesignerSpeciality WHERE designerID='".$row['designerID']."'";
+                                $result3 = mysqli_query($connection, $sql3);
+                                echo '<td>';
+                                $lastRow = false;
+                                
+                                while ($row3 = mysqli_fetch_assoc($result3)) {
+                                    $sql4 = "SELECT category FROM designcategory WHERE id='".$row3['designCategoryID']."'";
+                                    $result4 = mysqli_query($connection, $sql4);
+                                    while ($row4 = mysqli_fetch_assoc($result4)) {
+                                    if ($lastRow) {
+                                        echo ', ';
+                                    }
+                                    echo $row4['category'];
+                                    $lastRow = true;
+                                  
+                                    }
+////                                    if ($row4 = mysqli_fetch_assoc($result4)) {
+//                                        echo $row4['category'].', ';
+//                                    }
+                                }
+                                echo '</td>';
+                                echo '<td><a href="RequestDesignConsultation.php?designerID='.$row['designerID'].'">Request Design Consultation</a></td></tr>';
                             }
-                            echo ' </td>';
-                            echo '<td><a href="RequestDesignConsultation.php?designerID='.$row['designerID'].'">Request Design Consultation</a></td></tr>'; //?????????designerID or id?????????????? 
-                            
-                        }
-                        
-//                        
+                        }   
                     }
-                    else if ($_SERVER['REQUEST_METHOD']=="GET"){ //
-                        $sql="SELECT * FROM Designer";
-                        $result= mysqli_query($connection, $sql);
-                        while ($row= mysqli_fetch_assoc($result)){
+                    
+                    else if ($_SERVER['REQUEST_METHOD'] == "GET") {
+                        $sql = "SELECT * FROM Designer";
+                        $result = mysqli_query($connection, $sql);
+                        while ($row = mysqli_fetch_assoc($result)) {
                             echo '<tr><td class="image"><a href="DesignPortfolio.php?id='.$row['id'].'"><img src="image/'.$row['logoImgFileName'].'" alt="'.$row['firstName'].'\'s Logo"></a><br> <a href="DesignPortfolio.php?id='.$row['id'].'" class="desName">'.$row['firstName'].' '.$row['lastName'].'</a></td>';
                             $sql2 = "SELECT * FROM designerspeciality WHERE designerID='" . $row['id'] . "'";
-                            $result2= mysqli_query($connection, $sql2);
+                            $result2 = mysqli_query($connection, $sql2);
                             echo '<td>';
-                            while($row2= mysqli_fetch_assoc($result2)){
-                            $sql3 = "SELECT category FROM designcategory WHERE id='" . $row2['designCategoryID'] . "'"; 
-                            $result3= mysqli_query($connection, $sql3);
-                            $row3= mysqli_fetch_assoc($result3);
-//                          while($row3= mysqli_fetch_assoc($result3)){
-                            echo $row3['category'].', ';
+                            $hasRows = false;
+                            while ($row2 = mysqli_fetch_assoc($result2)) {
+                                $sql3 = "SELECT category FROM designcategory WHERE id='" . $row2['designCategoryID'] . "'";
+                                $result3 = mysqli_query($connection, $sql3);
+                                while ($row3 = mysqli_fetch_assoc($result3)) {
+                                    if ($hasRows) {
+                                        echo ', ';
+                                    }
+                                    echo $row3['category'];
+                                    $hasRows = true;
+                                }
                             }
+        
                             echo '</td>';
-                            echo '<td><a href="RequestDesignConsultation.php?designerID='.$row['id'].'">Request Design Consultation</a></td></tr>'; //?????????designerID or id?????????????? 
+                            echo '<td><a href="RequestDesignConsultation.php?designerID='.$row['id'].'">Request Design Consultation</a></td></tr>';
                         }
                     }
                     
