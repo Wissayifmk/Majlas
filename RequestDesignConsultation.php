@@ -34,14 +34,14 @@ if ($error != null) {
     <body>
         <header>
             <img src="image/tapImage.PNG" alt="Majlas's Logo" width="200">
-            <button type="button" onclick="window.location.href = 'index.html'" class="log-out">
+            <button type="button" onclick="window.location.href = 'index.php'" class="log-out">
                 <img src="image/Log-Out.png" alt="log-out">
             </button> 
         </header>
         <div class="breadcrumb">
-            <a href="ClientHomePage.html">Client Homepage</a>
+            <a href="ClientHomePage.php?id=$_SESSION['id']">Client Homepage</a>
             <span> / </span>
-            <a href="RequestDesignConsultation.html">Request design consultation</a>  
+            <a href="RequestDesignConsultation.php?designerID=$_GET['designerID']">Request design consultation</a>  
         </div>
         <main>
             <br>
