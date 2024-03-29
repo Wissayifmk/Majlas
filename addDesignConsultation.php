@@ -27,8 +27,11 @@ if ($error != null) {
     //add new design consultation to the database 
     $consultation = $_POST['Consultation'];
     $img = $_POST['ConsultationImage'];
-    $sql3 = "INSERT INTO designconsultation (requestID ,consultation ,consultationImgFileName) VALUES ('$id', '$consultation', $img')";
-    $result3 = mysqli_query($conn, $sql3);
+    $sql3 = "INSERT INTO designconsultation (requestID ,consultation ,consultationImgFileName) VALUES (?,?,?)";
+    if ($statement = mysqli_prepare($conn, $sql3)) {
+            mysqli_stmt_bindm($statement, 'iss','$id', '$consultation', '$img');
+            mysqli_stmt_execute($statement);
+        }
     header('Location:DesignerHome.php');
 }
 }

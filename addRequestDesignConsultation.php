@@ -1,4 +1,5 @@
 <?php
+
 require 'checkSecurity.php';
 ?>
 <?php
@@ -16,7 +17,7 @@ if ($error != null) {
     exit($output);
 } else {
 
-    if (isset($_POST['desId'])) { 
+    if (isset($_POST['desId'])) {
         //defining Variable
         $date = date("Y-m-d");
         $type = $_POST['roomType'];
@@ -43,9 +44,9 @@ if ($error != null) {
 
         //insert the data to the database
         $sqlIn = "INSERT INTO designconsultationrequest (clientID,designerID,roomTypeID,designCategoryID,roomWidth,roomLength,colorPreferences,date, statusID) VALUES (? ,?,?,?,?,'?,?,?,?)";
-        if($statement= mysqli_prepare($conn, $sqlIn)){
-            mysqli_stmt_bindm($statement,'iiiiiissi','$ClientID' ,'$Did','$roomType','$cat','$width','$height','$Color','$date', $rowstatus['id']);
-             $result = mysqli_stmt_execute($statement);
+        if ($statement = mysqli_prepare($conn, $sqlIn)) {
+            mysqli_stmt_bindm($statement, 'iiiiiissi', '$ClientID', '$Did', '$roomType', '$cat', '$width', '$height', '$Color', '$date', $rowstatus['id']);
+            mysqli_stmt_execute($statement);
         }
         header('Location:ClientHomepage.php?id=' . $ClientID);
     }
