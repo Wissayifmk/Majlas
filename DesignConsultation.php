@@ -40,9 +40,9 @@ if ($error != null) {
             </button> 
         </header>
         <div class="breadcrumb">
-            <?php echo'<a href="DesignerHomePage.php?$DesignerID ='. $_SESSION['id'].'">Designer Homepage</a>'?>
+            <?php echo'<a href="DesignerHomePage.php?$DesignerID =' . $_SESSION['id'] . '">Designer Homepage</a>' ?>
             <span> / </span>
-            <?php echo'<a href="DesignConsultation.php?requestID='.$_GET['request_id'].'">Design Consultation</a>'?> 
+            <?php echo'<a href="DesignConsultation.php?requestID=' . $_GET['request_id'] . '">Design Consultation</a>' ?> 
         </div>
         <main>
             <br>
@@ -53,52 +53,54 @@ if ($error != null) {
                     <div id="RequestInformationData">
                         <?php
                         //get the request info
-                        $sql = "SELECT * From designconsultationrequest WHERE id=". $_GET['request_id'];
+                        $sql = "SELECT * From designconsultationrequest WHERE id=" . $_GET['request_id'];
                         $result = mysqli_query($conn, $sql);
                         $row = mysqli_fetch_assoc($result);
-                        
+
                         //getting the full name from the client table using the client id from the request table
                         $sqlname = "SELECT * FROM client WHERE id=" . $row['clientID'];
                         $resultname = mysqli_query($conn, $sqlname);
                         $rowname = mysqli_fetch_assoc($resultname);
                         echo'<p>Client:' . $rowname['firstName'] . ' ' . $rowname['lastName'] . '<br>';
-                        
+
                         //getting the room type from the room type table using the room type id from the request table
                         $sqltype = "SELECT type FROM roomtype WHERE id=" . $row['roomTypeID'];
                         $resulttype = mysqli_query($conn, $sqltype);
                         $rowtype = mysqli_fetch_assoc($resulttype);
                         echo ' Room: ' . $rowtype['type'] . '<br> ';
-                        
+
                         //getting the Dimensions from the request table
                         echo'Dimensions:' . $row['roomLength'] . 'x' . $row['roomWidth'] . 'm<br>';
-                        
+
                         //getting the category from the category table using the category id from the request table
                         $sqlcat = "SELECT category FROM designcategory WHERE id=" . $row['designCategoryID'];
                         $resultcat = mysqli_query($conn, $sqlcat);
                         $rowcat = mysqli_fetch_assoc($resultcat);
                         echo'Design Category:' . $rowcat['category'] . '<br>';
-                        
+
                         //getting the color and the date from the request table
                         echo'Color Preferences:' . $row['colorPreferences'] . '<br>';
                         echo 'Date:' . $row['date'] . '</p>';
                         ?>
                     </div>
                 </div>
-                <form action="addDesignConsultation.php" method="post">
-                    <label>Consultation:<br>
-                        <textarea name="Consultation" cols="38" rows="7" placeholder="Write your consultation here" required></textarea>
-                    </label><br>
-                    <?php
-                    echo '<input type = "hidden" name = "id" value = "' . $id . '">';
-                    ?>
-                    <label>Upload Image:<br>
-                        <input type="file" name="ConsultationImage" id="file" required></label>
-                    <br>
-                    <br>
-                    <button class="btn" type="submit" >
-                        <span class="btn__visible">Send</span>
-                        <span class="btn__invisible">Thank you :)</span>
-                    </button>
+                <?php 
+                echo'<form action="addDesignConsultation.php?request_id=' . $_GET['request_id'] . '" method="post">'
+                ?>
+                <label>Consultation:<br>
+                    <textarea name="Consultation" cols="38" rows="7" placeholder="Write your consultation here" required></textarea>
+                </label><br>
+                <?php
+                echo '<input type = "hidden" name = "id" value = "' . $id . '">';
+                ?>
+                <label>Upload Image:<br>
+                    <input type="file" name="ConsultationImage" id="file" required></label>
+                <br>
+                <br>
+                <button class="btn" type="submit" >
+                    <span class="btn__visible">Send</span>
+                    <span class="btn__invisible">Thank you :)</span>
+                </button>
 
                 </form>
 
