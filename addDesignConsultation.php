@@ -5,6 +5,8 @@ ini_set('log_errors', '1');
 
 ini_set('display_errors', '1');
 
+require 'checkSecurity.php';
+
 $conn = mysqli_connect('localhost', 'root', 'root', 'majlas');
 $error = mysqli_connect_error();
 if ($error != null) {
@@ -21,14 +23,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //update the status id to consultation provided
     $sql2 = "UPDATE designconsultationrequest SET statusID =".$row['id']."WHERE id='$id'";
     $result2 = mysqli_query($conn, $sql2);
-    $row2 = mysqli_fetch_assoc($result2);
 
     //add new design consultation to the database 
     $consultation = $_POST['Consultation'];
     $img = $_POST['ConsultationImage'];
     $sql3 = "INSERT INTO designconsultation (requestID ,consultation ,consultationImgFileName) VALUES ('$id', '$consultation', '$img')";
     $result3 = mysqli_query($conn, $sql3);
-    header('Location:DesignerHome.php');
+    header('Location:DesignerHome.php?id='.$DesignerID);
 }
 }
 
