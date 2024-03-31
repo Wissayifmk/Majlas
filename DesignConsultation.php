@@ -53,7 +53,7 @@ if ($error != null) {
                     <div id="RequestInformationData">
                         <?php
                         //get the request info
-                        $sql = "SELECT * From designconsultationrequest WHERE id=$id";
+                        $sql = "SELECT * From designconsultationrequest WHERE id=". $_GET['requestID'];
                         $result = mysqli_query($conn, $sql);
                         $row = mysqli_fetch_assoc($result);
                         
@@ -75,7 +75,7 @@ if ($error != null) {
                         //getting the category from the category table using the category id from the request table
                         $sqlcat = "SELECT category FROM designcategory WHERE id=" . $row['designCategoryID'];
                         $resultcat = mysqli_query($conn, $sqlicat);
-                        $rowcat = ysqli_fetch_assoc($resultcat);
+                        $rowcat = mysqli_fetch_assoc($resultcat);
                         echo'Design Category:' . $row['category'] . '<br>';
                         
                         //getting the color and the date from the request table
