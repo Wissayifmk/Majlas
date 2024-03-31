@@ -14,7 +14,7 @@ if ($error != null) {
     $id = $_GET['request_id'];
 if ($_SERVER["REQUEST_METHOD"] == "POST") {      
     $stat = "consultation provided";
-    $sql = "SELECT id FROM requeststatus WHERE status='$stat'";
+    $sql = "SELECT * FROM requeststatus WHERE status='$stat'";
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
 
