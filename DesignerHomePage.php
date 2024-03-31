@@ -162,7 +162,7 @@ require 'checkSecurity.php';
                             echo '<td>' . $rows["colorPreferences"] . '</td>';
                             echo '<td>' . $rows["date"] . '</td>';
                             echo '<td><a href="DesignConsultation.php?project_id='.$rows['id'].'">Provide Consultation</a></td>';
-                            echo '<td><a href="DeclinedDesignConsultation.php?request_id=' . $rows["requestID"] . '">Decline Consultation</a></td>';
+                            echo '<td><a href="DeclinedDesignConsultation.php?request_id=' . $rows["id"] . '">Decline Consultation</a></td>';
                             echo '</tr>';
                         }
                         } 
