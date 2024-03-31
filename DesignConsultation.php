@@ -64,7 +64,7 @@ if ($error != null) {
                         echo'<p>Client:' . $rowname['firstName'] . ' ' . $rowname['lastName'] . '<br>';
                         
                         //getting the room type from the room type table using the room type id from the request table
-                        $sqltype = "SELECT type FROM roomtype WHERE id=" . $row['roomTyprID'];
+                        $sqltype = "SELECT type FROM roomtype WHERE id=" . $row['roomTypeID'];
                         $resulttype = mysqli_query($conn, $sqltype);
                         $rowtype = mysqli_fetch_assoc($resulttype);
                         echo ' Room: ' . $rowtype['type'] . '<br> ';
