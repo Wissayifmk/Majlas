@@ -45,6 +45,9 @@ if ($error != null) {
         //insert the data to the database
         $sqlIn = "INSERT INTO designconsultationrequest (clientID,designerID,roomTypeID,designCategoryID,roomWidth,roomLength,colorPreferences,date, statusID) VALUES ('$ClientID' ,'$Did','$roomType','$cat','$width','$height','$Color','$date'," . $rowstatus['id'] . ")";
         $resultIn = mysqli_query($conn, $sqlIn);
-        header('Location:ClientHomepage.php?id=' . $ClientID);
+        if ($resultIn) {
+            header("Location: DesignerHomePage.php?id=" . $_SESSION['id']);
+            exit();
+        }
     }
 }
