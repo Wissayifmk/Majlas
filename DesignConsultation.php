@@ -76,7 +76,7 @@ if ($error != null) {
                         $sqlcat = "SELECT category FROM designcategory WHERE id=" . $row['designCategoryID'];
                         $resultcat = mysqli_query($conn, $sqlcat);
                         $rowcat = mysqli_fetch_assoc($resultcat);
-                        echo'Design Category:' . $row['category'] . '<br>';
+                        echo'Design Category:' . $rowcat['category'] . '<br>';
                         
                         //getting the color and the date from the request table
                         echo'Color Preferences:' . $row['colorPreferences'] . '<br>';
