@@ -1,4 +1,7 @@
 <?php
+require 'checkSecurity.php';
+?>
+<?php
 $host = "localhost";
 $user = "root";
 $pass = "root";
@@ -14,7 +17,7 @@ if ($error != null) {
     $requestID = $_GET['id'];
 
     // Update the status of the consultation request
-    $query = "UPDATE designconsultationrequest SET statusID = (SELECT id FROM requeststatus WHERE status = 'consultation declined') WHERE id = $requestID";
+    $query = "UPDATE designconsultationrequest SET statusID = 1 WHERE id = $requestID";
     $result = mysqli_query($connection, $query);
 
     if ($result) {
