@@ -49,7 +49,7 @@ if ($error != null) {
                 <h1>Request design consultation</h1>
                 <br><div class="AllForm">
                     <?php
-                    echo '<form action="addRequestDesignConsultation.php?clientID=' . $ClientID . '" method="POST">';
+                    echo '<form action="addRequestDesignConsultation.php?clientID='.$ClientID.'" method="POST">';
                     ?>                    
                     <fieldset>
                         <legend>Request design consultation form</legend>       

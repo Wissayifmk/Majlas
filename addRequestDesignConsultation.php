@@ -43,11 +43,8 @@ if ($error != null) {
         $cat = $rowcat['id'];
 
         //insert the data to the database
-        $sqlIn = "INSERT INTO designconsultationrequest (clientID,designerID,roomTypeID,designCategoryID,roomWidth,roomLength,colorPreferences,date, statusID) VALUES (? ,?,?,?,?,'?,?,?,?)";
-        if ($statement = mysqli_prepare($conn, $sqlIn)) {
-            mysqli_stmt_bindm($statement, 'iiiiiissi', '$ClientID', '$Did', '$roomType', '$cat', '$width', '$height', '$Color', '$date', $rowstatus['id']);
-            mysqli_stmt_execute($statement);
-        }
+        $sqlIn = "INSERT INTO designconsultationrequest (clientID,designerID,roomTypeID,designCategoryID,roomWidth,roomLength,colorPreferences,date, statusID) VALUES ('$ClientID' ,'$Did','$roomType','$cat','$width','$height','$Color','$date'," . $rowstatus['id'] . ")";
+        $resultIn = mysqli_query($conn, $sqlIn);
         header('Location:ClientHomepage.php?id=' . $ClientID);
     }
 }
