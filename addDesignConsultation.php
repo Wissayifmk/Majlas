@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //add new design consultation to the database 
     $consultation = $_POST['Consultation'];
     $img = $_POST['ConsultationImage'];
-    $sql3 = "INSERT INTO designconsultation (requestID ,consultation ,consultationImgFileName) VALUES ('$id', '$consultation', $img')";
+    $sql3 = "INSERT INTO designconsultation (requestID ,consultation ,consultationImgFileName) VALUES ('$id', '$consultation', '$img')";
     $result3 = mysqli_query($conn, $sql3);
     header('Location:DesignerHome.php');
 }
