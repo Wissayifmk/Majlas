@@ -21,7 +21,7 @@ if ($error != null) {
     $result = mysqli_query($connection, $query);
 
     if ($result) {
-        $header = header("Location: DesignerHomePage.php");
+        $header = header("Location: DesignerHomePage.php?id=" . $_SESSION['id']);
         exit();
     }
 }
