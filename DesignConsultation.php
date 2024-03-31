@@ -74,7 +74,7 @@ if ($error != null) {
                         
                         //getting the category from the category table using the category id from the request table
                         $sqlcat = "SELECT category FROM designcategory WHERE id=" . $row['designCategoryID'];
-                        $resultcat = mysqli_query($conn, $sqlicat);
+                        $resultcat = mysqli_query($conn, $sqlcat);
                         $rowcat = mysqli_fetch_assoc($resultcat);
                         echo'Design Category:' . $row['category'] . '<br>';
                         
