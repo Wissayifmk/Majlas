@@ -85,7 +85,7 @@ if ($error != null) {
                     </div>
                 </div>
                 <?php 
-                echo'<form action="addDesignConsultation.php?request_id=' . $_GET['request_id'] . '" method="post">'
+                echo'<form action="addDesignConsultation.php?request_id=' . $_GET['request_id'] . '" method="POST">'
                 ?>
                 <label>Consultation:<br>
                     <textarea name="Consultation" cols="38" rows="7" placeholder="Write your consultation here" required></textarea>
