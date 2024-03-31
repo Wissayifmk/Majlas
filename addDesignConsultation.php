@@ -29,7 +29,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $img = $_POST['ConsultationImage'];
     $sql3 = "INSERT INTO designconsultation (requestID ,consultation ,consultationImgFileName) VALUES ('$id', '$consultation', '$img')";
     $result3 = mysqli_query($conn, $sql3);
-    header('Location:DesignerHome.php?id='.$DesignerID);
-}
+
+    if ($result3) {
+        $header = header("Location: DesignerHomePage.php?id=" . $_SESSION['id']);
+        exit();
+    }
+    }
 }
 
