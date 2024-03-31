@@ -58,7 +58,7 @@ if ($error != null) {
                         $row = mysqli_fetch_assoc($result);
                         
                         //getting the full name from the client table using the client id from the request table
-                        $sqlname = "SELECT firstName,lastName FROM client WHERE id=" . $row['clientID'];
+                        $sqlname = "SELECT * FROM client WHERE id=" . $row['clientID'];
                         $resultname = mysqli_query($conn, $sqlname);
                         $rowname = mysqli_fetch_assoc($resultname);
                         echo'<p>Client:' . $resultname['firstName'] . ' ' . $resultname['lastName'] . '<br>';
