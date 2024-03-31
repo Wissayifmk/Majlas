@@ -31,12 +31,12 @@ $connection = mysqli_connect("localhost", "root", "root", "majlas");
     </head>
 
     <body>
-        <header>
-            <img src="image/tapImage.PNG" alt="Majlas's Logo" width="200">
-            <button type="button" onclick="window.location.href = 'index.html'" class="log-out">
+    <header>
+        <img src="image/tapImage.PNG" alt="Majlas's Logo" width="200">
+        <button type="button" onclick="window.location.href = 'SignOut.php'" class="log-out">
                 <img src="image/Log-Out.png" alt="log-out">
-            </button> 
-        </header>
+        </button>         
+    </header>
     <main>
 
         <div class="breadcrumb" >
