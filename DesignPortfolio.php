@@ -22,9 +22,9 @@ require 'checkSecurity.php';
 
         </header>
         <div class="breadcrumb">
-            <a href="ClientHomePage.html">Client Homepage</a>
+            <?php echo'<a href="ClientHomePage.php?id='.$_SESSION['id'].'">Client Homepage</a>'?>
             <span> / </span>
-            <a href="DesignPortfolio.html">Design Portfolio</a>  
+             <?php echo'<a href="DesignPortfolio.php?id='.$_GET['id'].'">Design Portfolio</a>'?> 
         </div>
         <main>
             <br>
