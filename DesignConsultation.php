@@ -14,7 +14,7 @@ if ($error != null) {
     $output = '<p> Unable to connect to database</p>' . $error;
     exit($output);
 } else {
-    $id = $_GET['requestID'];
+    $id = $_GET['id'];
 }
 ?>
 
@@ -42,7 +42,7 @@ if ($error != null) {
         <div class="breadcrumb">
             <?php echo'<a href="DesignerHomePage.php?$DesignerID ='. $_SESSION['id'].'">Designer Homepage</a>'?>
             <span> / </span>
-            <?php echo'<a href="DesignConsultation.php?requestID='.$_GET['requestID'].'">Design Consultation</a>'?> 
+            <?php echo'<a href="DesignConsultation.php?requestID='.$_GET['id'].'">Design Consultation</a>'?> 
         </div>
         <main>
             <br>
@@ -53,7 +53,7 @@ if ($error != null) {
                     <div id="RequestInformationData">
                         <?php
                         //get the request info
-                        $sql = "SELECT * From designconsultationrequest WHERE id=". $_GET['requestID'];
+                        $sql = "SELECT * From designconsultationrequest WHERE id=". $_GET['id'];
                         $result = mysqli_query($conn, $sql);
                         $row = mysqli_fetch_assoc($result);
                         
