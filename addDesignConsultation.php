@@ -32,6 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($result3) {
         header("Location: DesignerHomePage.php?id=" . $_SESSION['id']);
+         exit();
     }
     }
 }
