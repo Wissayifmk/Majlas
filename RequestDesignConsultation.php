@@ -39,9 +39,9 @@ if ($error != null) {
             </button> 
         </header>
         <div class="breadcrumb">
-            <a href="ClientHomePage.php?id=$_SESSION['id']">Client Homepage</a>
+            <?php echo'<a href="ClientHomePage.php?id='.$_SESSION['id'].'">Client Homepage</a>'?>
             <span> / </span>
-            <a href="RequestDesignConsultation.php?designerID=$_GET['designerID']">Request design consultation</a>  
+            <?php echo'<a href="RequestDesignConsultation.php?designerID='.$_GET['designerID'].'">Request design consultation</a>'?> 
         </div>
         <main>
             <br>

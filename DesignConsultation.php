@@ -40,9 +40,9 @@ if ($error != null) {
             </button> 
         </header>
         <div class="breadcrumb">
-            <a href="DesignerHomePage.php?$DesignerID = $_SESSION['id']">Designer Homepage</a>
+            <?php echo'<a href="DesignerHomePage.php?$DesignerID ='. $_SESSION['id'].'">Designer Homepage</a>'?>
             <span> / </span>
-            <a href="DesignConsultation.php?requestID=$_GET['requestID']">Design Consultation</a>  
+            <?php echo'<a href="DesignConsultation.php?requestID='.$_GET['requestID'].'">Design Consultation</a>'?> 
         </div>
         <main>
             <br>
