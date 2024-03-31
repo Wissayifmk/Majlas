@@ -80,7 +80,7 @@ if ($error != null) {
                         
                         //getting the color and the date from the request table
                         echo'Color Preferences:' . $row['colorPreferences'] . '<br>';
-                        echo 'Date' . $row['date'] . '</p>';
+                        echo 'Date:' . $row['date'] . '</p>';
                         ?>
                     </div>
                 </div>
