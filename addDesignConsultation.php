@@ -31,8 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result3 = mysqli_query($conn, $sql3);
 
     if ($result3) {
-        $header = header("Location: DesignerHomePage.php?id=" . $_SESSION['id']);
-        exit();
+        header("Location: DesignerHomePage.php?id=" . $_SESSION['id']);
     }
     }
 }
