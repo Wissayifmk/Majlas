@@ -140,71 +140,43 @@ require 'checkSecurity.php';
                         <th>Date</th>
                     </tr>
                     <?php
+                        $query6 = "SELECT dcr.id, c.firstName, c.lastName, rt.type, dcr.roomWidth, dcr.roomLength, dc.category, dcr.colorPreferences, dcr.date
+           FROM DesignConsultationRequest dcr
+           INNER JOIN Client c ON dcr.clientID = c.id
+           INNER JOIN RoomType rt ON dcr.roomTypeID = rt.id
+           INNER JOIN DesignCategory dc ON dcr.designCategoryID = dc.id
+           WHERE dcr.statusID = (SELECT id FROM RequestStatus WHERE status = 'pending consultation')
+           AND dcr.designerID = $DesignerID";
+                      
+                        $resultt = mysqli_query($connection, $query6);
+                        
+                        if ($resultt->num_rows > 0) {
+                        
+                        while ($rows = mysqli_fetch_assoc($resultt)) {
+                            
+                            echo '<tr>';
+                            echo '<td>'. $rows["firstName"].' '.$rows["lastName"]. '</td>';
+                            echo '<td>' . $rows["type"] . '</td>';
+                            echo '<td>' . $rows["roomWidth"] . 'x' . $rows["roomLength"] . '</td>';
+                            echo '<td>' . $rows["category"] . '</td>';
+                            echo '<td>' . $rows["colorPreferences"] . '</td>';
+                            echo '<td>' . $rows["date"] . '</td>';
+                            echo '<td><a href="DesignConsultation.php?project_id=' . $rows['id'] . '">Provide Consultation</a></button></td>';
+                            echo '<td><a href="DeclinedDesignConsultation.php?request_id=' . $rows["requestID"] . '">Decline Consultation</a></button></td>';
+                            echo '</tr>';
+                        }
+                        } 
+                        
+                       
+                             else {
+    // If no requests found
+    echo "<tr><td colspan='7'>No design consultation requests found.</td></tr>";
+}
+                        ?>             
+                      
+                       
                     
-                    $query3 = "SELECT id, clientID, roomTypeID, designCategoryID, roomWidth, roomLength, colorPreferences, date
-           FROM DesignConsultationRequest
-           WHERE statusID = (SELECT id FROM RequestStatus WHERE status = 'pending consultation')
-           AND designerID = <designerID>";
-                    $result3 = mysqli_query($connection, $query3);
-
-
-                    $queryClient = "SELECT id, firstName, lastName
-                FROM Client";
-                    $resultClient = mysqli_query($connection, $queryClient);
-
-
-                    $queryRoomType = "SELECT id, type
-                  FROM RoomType";
-                    $resultRoomType = mysqli_query($connection, $queryRoomType);
-
-
-                    $queryDesignCategory = "SELECT id, category
-                        FROM DesignCategory";
-                    $resultDesignCategory = mysqli_query($connection, $queryDesignCategory);
-
-
-                    while ($row = mysqli_fetch_assoc($result3)) {
-                        echo '<tr>';
-                        $clientID = $row["clientID"];
-                        $roomTypeID = $row["roomTypeID"];
-                        $designCategoryID = $row["designCategoryID"];
-
-                        
-                        mysqli_data_seek($resultClient, 0);
-                        while ($clientRow = mysqli_fetch_assoc($resultClient)) {
-                            if ($clientRow["id"] == $clientID) {
-                                echo '<td>' . $clientRow["firstName"] . ' ' . $clientRow["lastName"] . '</td>';
-                                break;
-                            }
-                        }
-
-                        
-                        mysqli_data_seek($resultRoomType, 0);
-                        while ($roomTypeRow = mysqli_fetch_assoc($resultRoomType)) {
-                            if ($roomTypeRow["id"] == $roomTypeID) {
-                                echo '<td>' . $roomTypeRow["type"] . '</td>';
-                                break;
-                            }
-                        }
-
-                        echo '<td>' . $row["roomWidth"] . 'x' . $row["roomLength"] . '</td>';
-
-                        
-                        mysqli_data_seek($resultDesignCategory, 0);
-                        while ($designCategoryRow = mysqli_fetch_assoc($resultDesignCategory)) {
-                            if ($designCategoryRow["id"] == $designCategoryID) {
-                                echo '<td>' . $designCategoryRow["category"] . '</td>';
-                                break;
-                            }
-                        }
-
-                        echo '<td>' . $row["colorPreferences"] . '</td>';
-                        echo '<td>' . $row["date"] . '</td>';
-                        echo '<td><a href="DesignConsultation.php?id=' . $row['id'] . '">Provide Consultation</a></td>';
-                        echo '<td><a href="DeclineConsultation.php?id=' . $row['id'] . '">Decline Consultation</a></td>';
-                        echo '</tr>';
-                    }
-                    ?>
+                    
                 </table>
             </section>
 
