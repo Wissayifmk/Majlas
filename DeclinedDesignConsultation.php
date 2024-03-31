@@ -14,7 +14,7 @@ if ($error != null) {
     exit($output);
 } else {
     // Retrieve the request ID from the URL
-    $requestID = $_GET['id'];
+    $requestID = $_GET['request_id'];
 
     // Update the status of the consultation request
     $query = "UPDATE designconsultationrequest SET statusID = 1 WHERE id = $requestID";
