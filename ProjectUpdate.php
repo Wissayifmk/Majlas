@@ -55,18 +55,18 @@ if ($error != null) {
                     <legend>Update Project</legend>
                 <div class="form-group">
                     <label for="project-name">Project Name: </label>
-                    <input type="text" id="project-name" name="project-name" value="<?php echo $row['projectName']; ?>" required>
+                    <input type="text" id="project-name" name="project-name" value="<?php echo $row['projectName']; ?>" >
                 </div>
                 <div class="form-group">
                   
 <label for="project-image">Project Image:</label>
 <img src="image/<?php echo $row['projectImgFileName']; ?>" alt="project-image" class="imgs" />
-                    <input type="file" id="project-image" name="project-image" required>
+                    <input type="file" id="project-image" name="project-image" >
                     
                 </div>
                 <div class="form-group">
                     <label for="design-category">Design Category:</label>
-                    <select id="design-category" name="design-category" required>
+                    <select id="design-category" name="design-category" >
 <?php 
     $sql2 = "SELECT * FROM designerspeciality WHERE designerID='" . $_SESSION['id'] . "'";
     $result2 = mysqli_query($connection, $sql2);
@@ -82,7 +82,7 @@ if ($error != null) {
                 </div>
                 <div class="form-group">
                     <label for="project-description">Project Description:</label>
-                    <textarea id="project-description" name="project-description" cols="50" rows="4" required><?php echo $row['description']; ?></textarea>
+                    <textarea id="project-description" name="project-description" cols="50" rows="4" ><?php echo $row['description']; ?></textarea>
                     <?php echo '<input type = "hidden" name = "projectID" value = "'. $projectID . '">';?>
                 </div>
                 <div class="form-group">

@@ -7,12 +7,33 @@ if ($error != null) {
     $output = '<p> Unable to connect to database</p>' . $error;
     exit($output);
 } else {
-    // Retrieve form data
-    $projectName = $_POST['project-name'];
-    $projectImage = $_POST['project-image'];
-    $designCategory = $_POST['design-category'];
-    $projectDescription = $_POST['project-description'];
     $projectID=$_POST['projectID'];
+    $sql="SELECT * FROM designportoflioproject WHERE id=$projectID";
+    $result= mysqli_query($connection, $sql);
+    $row= mysqli_fetch_assoc($result);
+    if($row!=null){
+    // Retrieve form data
+    if (isset($_POST['project-name'])){
+        $projectName = $_POST['project-name'];
+    }
+    else
+        $projectName=$row['projectName'];
+    if (isset($_POST['project-image'])){
+        $projectImage = $_POST['project-image'];
+    }
+    else
+        $projectImage=$row['projectImgFileName'];
+    if (isset($_POST['design-category'])){
+        $designCategory = $_POST['design-category'];
+    }
+    else
+        $designCategory=$row['designCategoryID'];
+    if (isset($_POST['project-description'])){
+        $projectDescription = $_POST['project-description'];
+    }
+    else
+        $projectDescription=$row['description'];
+    
     
     
     $query = "UPDATE designportoflioproject SET projectName = '$projectName', projectImgFileName='$projectImage', description='$projectDescription', designCategoryID=$designCategory WHERE id = $projectID";
@@ -22,4 +43,7 @@ if ($error != null) {
         $header = header("Location: DesignerHomePage.php?id=" . $_SESSION['id']);
         exit();
     }
+    }
+    else
+        echo '<p>no result</p>';
 }
