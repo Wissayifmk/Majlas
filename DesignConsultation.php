@@ -85,7 +85,7 @@ if ($error != null) {
                     </div>
                 </div>
                 <?php 
-                echo'<form action="addDesignConsultation.php method="POST">'
+                echo'<form action="addDesignConsultation.php method="POST">';
                 ?>
                 <label>Consultation:<br>
                     <textarea name="Consultation" cols="38" rows="7" placeholder="Write your consultation here" required></textarea>
