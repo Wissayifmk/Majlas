@@ -73,7 +73,7 @@
     
     <script>
         document.getElementById("Loginbtn").addEventListener("click", function () {
-            window.location.href = "Login.html";
+            window.location.href = "login.php";
         });
     </script>
     
