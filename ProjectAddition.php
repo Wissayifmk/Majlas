@@ -40,7 +40,7 @@ $connection = mysqli_connect("localhost", "root", "root", "majlas");
     <main>
 
         <div class="breadcrumb" >
-            <a href="DesignerHomePage.html">Designer Homepage</a>
+         <?php    echo '<a href="DesignerHomePage.php?id='.$_SESSION['id'].'">Designer Homepage</a>'; ?>
             <span> / </span>
             <a href="ProjectAddition.html">Add Project</a>  
         </div>
