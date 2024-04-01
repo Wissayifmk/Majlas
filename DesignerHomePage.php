@@ -56,21 +56,33 @@ require 'checkSecurity.php';
                         echo '<span>Last name:</span> ' . $lastName . '<br>';
                         echo '<span>Email address:</span> <a href="mailto:' . $emailAddress . '">' . $emailAddress . '</a><br>';
                         echo '<span>Brand Name:</span> ' . $brandName . '<br>';
-                        echo '<span>Category:</span>';
+                        echo '<span>Category: </span>';
                         $query4 = "SELECT designCategoryID FROM DesignerSpeciality WHERE designerID=$DesignerID";
                         $result4 = mysqli_query($connection, $query4);
                         if ($result4) {
+                            $hasRows = false;
                             while ($row2 = mysqli_fetch_assoc($result4)) {
                                 $catid = $row2['designCategoryID'];
                                 $query5 = "SELECT category FROM DesignCategory WHERE id=$catid";
                                 $result5 = mysqli_query($connection, $query5);
-                                if ($result5) {
-                                    $row3 = mysqli_fetch_assoc($result5);
-                                    echo $row3['category'] . " ";
-                                } else {
-                                    echo 'Error fetching design category: ' . mysqli_error($connection);
+                                while ($row3 = mysqli_fetch_assoc($result5)) {
+                                    if ($hasRows) {
+                                        echo ', ';
+                                    }
+                                    echo $row3['category'];
+                                    $hasRows = true;
                                 }
                             }
+
+//                                
+//                                $result5 = mysqli_query($connection, $query5);
+//                                if ($result5) {
+//                                    $row3 = mysqli_fetch_assoc($result5);
+//                                    echo $row3['category'] . " ";
+//                                } else {
+//                                    echo 'Error fetching design category: ' . mysqli_error($connection);
+//                                }
+                            
                             echo '</p>';
                             echo '</div>';
                         } else {

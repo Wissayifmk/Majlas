@@ -1,27 +1,26 @@
 <?php
 require 'checkSecurity.php';
+$connection = mysqli_connect('localhost', 'root', 'root', 'majlas');
+$error = mysqli_connect_error();
+if ($error != null) {
+    $output = '<p> Unable to connect to database</p>' . $error;
+    exit($output);
+} else 
+    $projectID = $_GET['id'];
+
 ?>
-<?php 
-$connection = mysqli_connect("localhost", "root", "root", "majlas");
-        if (mysqli_connect_errno()) {
-        // Check connection
-        die("Connection Error" . mysqli_connect_error());
-        }
-
-       ?>
-
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
-    <head>
+ <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" type="x-icon" href="image/tapImage.PNG">
         <link rel="stylesheet" href="style.css">
         <link rel="stylesheet" href="addPage.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <title>Add Project</title>
-            <style>
-
+        <title>Update Project</title>
+        <style>
+            
             label{
 
   display: block;
@@ -31,32 +30,39 @@ $connection = mysqli_connect("localhost", "root", "root", "majlas");
     </head>
 
     <body>
-    <header>
-        <img src="image/tapImage.PNG" alt="Majlas's Logo" width="200">
-        <button type="button" onclick="window.location.href = 'SignOut.php'" class="log-out">
+        <header>
+            <img src="image/tapImage.PNG" alt="Majlas's Logo" width="200">
+            <button type="button" onclick="window.location.href = 'index.html'" class="log-out">
                 <img src="image/Log-Out.png" alt="log-out">
-        </button>         
-    </header>
+            </button> 
+        </header>
     <main>
-
-        <div class="breadcrumb" >
-            <a href="DesignerHomePage.html">Designer Homepage</a>
+   
+<div class="breadcrumb">
+           <a href="DesignerHomePage.html">Designer Homepage</a>
             <span> / </span>
-            <a href="ProjectAddition.html">Add Project</a>  
+            <a href="ProjectUpdate.html">Update Project</a>   
         </div>
-
         <div class="container">
-
-            <form id="project-form" action="addProjectAddition.php?id=1" method="POST" >
+            <?php 
+                $sql="SELECT * FROM designportoflioproject WHERE id='$projectID'";
+                $result= mysqli_query($connection, $sql);
+                $row= mysqli_fetch_assoc($result);
+                                           
+            ?>
+            <form id="project-form" method="post" action="addProjectUpdate.php" >
                 <fieldset>
-                    <legend>Add Project</legend>
+                    <legend>Update Project</legend>
                 <div class="form-group">
-                    <label for="project-name">Project Name:</label>
-                    <input type="text" id="project-name" name="project-name" placeholder="Enter Project Name" required>
+                    <label for="project-name">Project Name: </label>
+                    <input type="text" id="project-name" name="project-name" value="<?php echo $row['projectName']; ?>" required>
                 </div>
                 <div class="form-group">
-                    <label for="project-image">Project Image:</label>
+                  
+<label for="project-image">Project Image:</label>
+                    <img src="image/<?php echo $row['projectImgFileName']; ?>" alt="project-image"/>
                     <input type="file" id="project-image" name="project-image" required>
+                    
                 </div>
                 <div class="form-group">
                     <label for="design-category">Design Category:</label>
@@ -68,31 +74,29 @@ $connection = mysqli_connect("localhost", "root", "root", "majlas");
         echo '<option value="'.$row2['id'].'">'.$row2['category'].'</option>';
         
     }
-?>                    </select>
+?>                    
+                    </select>
+                    
                 </div>
                 <div class="form-group">
                     <label for="project-description">Project Description:</label>
-                    <textarea id="project-description" name="project-description" cols= "30" rows="4" placeholder="Enter Project Description" required></textarea>
+                    <textarea id="project-description" name="project-description" cols="50" rows="4" required><?php echo $row['description']; ?></textarea>
+                    <?php echo '<input type = "hidden" name = "projectID" value = "'. $projectID . '">';?>
                 </div>
                 <div class="form-group">
-                    <button type="submit" id="sub" name="submit" >Add Project</button>
+                    <button type="submit" id="sub">Update Project</button>
                 </div>
             </fieldset>
 
             </form>
+        </div>
 
 
 
 
     </main>
 
-<!--    <script>
-       document.getElementById("project-form").addEventListener("submit", function(event) {
-  event.preventDefault(); // Prevents the form from submitting and page refreshing
-  window.location.href="DesignerHomePage.html";
-       });
-    </script>-->
-
+    
 
     <footer>
     <div class="footcontainer">
@@ -102,7 +106,7 @@ $connection = mysqli_connect("localhost", "root", "root", "majlas");
         </div>
 
         <var></var>
-
+        
         <div class="col2">
             <h3>Contact us</h3>
             <ul>
@@ -119,9 +123,9 @@ $connection = mysqli_connect("localhost", "root", "root", "majlas");
 
         </div>
     </div>
-
+    
 </footer>
-
-
+    
+    
 </body>
 </html>
