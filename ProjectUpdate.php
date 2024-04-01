@@ -60,7 +60,7 @@ if ($error != null) {
                 <div class="form-group">
                   
 <label for="project-image">Project Image:</label>
-                    <img src="image/<?php echo $row['projectImgFileName']; ?>" alt="project-image"/>
+<img class="imgs" src="image/<?php echo $row['projectImgFileName']; ?>" alt="project-image" />
                     <input type="file" id="project-image" name="project-image" required>
                     
                 </div>
