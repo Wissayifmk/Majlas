@@ -32,9 +32,9 @@ if ($error != null) {
         $result3 = mysqli_query($conn, $sql3);
 
         if ($result3) {
-            header("Location: DesignerHomePage.php?id=" . $_SESSION['id']);
-            exit();
-        }
+        header("Location: DesignerHomePage.php?id=" . $_SESSION['id']);
+        exit();
+    }
     }
 }
 
