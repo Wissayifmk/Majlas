@@ -25,7 +25,7 @@
                 <p class="Majlas" style="color: #7F3425; margin-top: -1.6em;">MAJLAS</p><br>
                 <p id="pMajlas">every space becomes a<br> masterpiece!</p>
                 <button id="Loginbtn">Login</button><br><br>
-                <a href="SignUp.html" class="Sign">New user? Sign up.</a>
+                <a href="SignUp.php" class="Sign">New user? Sign up.</a>
             </div>
             <div class="story" style="margin-top: 6em;">
                 <p id="Story">MAJLAS Story!</p><br>
