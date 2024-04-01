@@ -56,9 +56,14 @@ if ($error != null) {
                         <br>
                         <label>Room Type: 
                             <select name="roomType" id="roomType" required >
-                                <option value="Bedroom">Bedroom</option>
-                                <option value="Kitchen">Kitchen</option>
-                                <option value="LivingRoom">Living Room</option>
+                                <?php 
+                                $sql4 = "SELECT * FROM roomtype";
+                                $result4 = mysqli_query($conn, $sql4);
+                                while ($row4 = mysqli_fetch_assoc($result4)) {
+                                 
+                                 echo '<option value="'.$row4['id'].'">'.$row4['type'].'</option>';
+                                }
+                                ?>
                             </select>
                         </label>
                         <br>
@@ -79,11 +84,16 @@ if ($error != null) {
                         <label>
                             Design category: 
                             <select name="DesignCategory" id="DesignCategory" required>
-                                <option value="Modern">Modern</option>
-                                <option value="Mid-century modern">Mid-century modern</option>
-                                <option value="Coastal">Coastal</option>
-                                <option value="Minimalist">Minimalist</option>
-                                <option value="Country">Country</option>
+                                <?php 
+                                $sql2 = "SELECT * FROM designerspeciality WHERE designerID='" .$Did . "'";
+                                $result2 = mysqli_query($conn, $sql2);
+                                while ($row2 = mysqli_fetch_assoc($result2)) {
+                                    $sql3="SELECT * FROM designcategory WHERE id='".$row2['designCategoryID']."'";
+                                    $result3 = mysqli_query($conn, $sql3);
+                                    $row3 = mysqli_fetch_assoc($result3);
+                                 echo '<option value="'.$row3['id'].'">'.$row3['category'].'</option>';
+                                }
+                                ?>
                             </select>
                         </label>
                         <br>

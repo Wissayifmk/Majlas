@@ -108,9 +108,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <img src="image/tapImage.PNG" alt="Majlas's Logo" width="200">
     </header>
     <div class="breadcrumb">
-        <a href="index.html">Homepage</a>
+        <a href="index.php">Homepage</a>
         <span> / </span>
-        <a href="SignUp.html">Sign up</a>
+        <a href="SignUp.php">Sign up</a>
     </div>
     <main>
         <div class="BigContainer">

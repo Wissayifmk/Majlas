@@ -35,19 +35,19 @@ if ($error != null) {
         $rowstatus = mysqli_fetch_assoc($result);
         
         //getting the id for the room type
-        $sql2 = "SELECT id FROM roomtype WHERE type='$type'";
-        $result2 = mysqli_query($conn, $sql2);
-        $rowtype = mysqli_fetch_assoc($result2);
-        $roomType = $rowtype['id'];
+//        $sql2 = "SELECT id FROM roomtype WHERE type='$type'";
+//        $result2 = mysqli_query($conn, $sql2);
+//        $rowtype = mysqli_fetch_assoc($result2);
+//        $roomType = $rowtype['id'];
         
         //getting the id for the design category
-        $sqlcat = "SELECT id FROM designcategory WHERE category='$DesignCategory'";
-        $result3 = mysqli_query($conn, $sqlcat);
-        $rowcat = mysqli_fetch_assoc($result3);
-        $cat = $rowcat['id'];
+//        $sqlcat = "SELECT id FROM designcategory WHERE category='$DesignCategory'";
+//        $result3 = mysqli_query($conn, $sqlcat);
+//        $rowcat = mysqli_fetch_assoc($result3);
+//        $cat = $rowcat['id'];
 
         //insert the data to the database
-        $sqlIn = "INSERT INTO designconsultationrequest (clientID,designerID,roomTypeID,designCategoryID,roomWidth,roomLength,colorPreferences,date, statusID) VALUES ('$ClientID' ,'$Did','$roomType','$cat','$width','$height','$Color','$date'," . $rowstatus['id'] . ")";
+        $sqlIn = "INSERT INTO designconsultationrequest (clientID,designerID,roomTypeID,designCategoryID,roomWidth,roomLength,colorPreferences,date, statusID) VALUES ('$ClientID' ,'$Did','$type','$DesignCategory','$width','$height','$Color','$date'," . $rowstatus['id'] . ")";
         $resultIn = mysqli_query($conn, $sqlIn);
         if ($resultIn) {
             header("Location: ClientHomePage.php?id=" . $_SESSION['id']);

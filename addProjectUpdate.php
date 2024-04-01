@@ -18,16 +18,19 @@ if ($error != null) {
     }
     else
         $projectName=$row['projectName'];
-    if (isset($_POST['project-image'])){
+    
+    if (!empty($_POST['project-image'])){
         $projectImage = $_POST['project-image'];
     }
     else
         $projectImage=$row['projectImgFileName'];
+    
     if (isset($_POST['design-category'])){
         $designCategory = $_POST['design-category'];
     }
     else
         $designCategory=$row['designCategoryID'];
+    
     if (isset($_POST['project-description'])){
         $projectDescription = $_POST['project-description'];
     }

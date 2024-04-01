@@ -42,7 +42,7 @@ $connection = mysqli_connect("localhost", "root", "root", "majlas");
         <div class="breadcrumb" >
          <?php    echo '<a href="DesignerHomePage.php?id='.$_SESSION['id'].'">Designer Homepage</a>'; ?>
             <span> / </span>
-            <a href="ProjectAddition.html">Add Project</a>  
+            <a href="ProjectAddition.php">Add Project</a>  
         </div>
 
         <div class="container">
@@ -88,12 +88,6 @@ $connection = mysqli_connect("localhost", "root", "root", "majlas");
 
     </main>
 
-<!--    <script>
-       document.getElementById("project-form").addEventListener("submit", function(event) {
-  event.preventDefault(); // Prevents the form from submitting and page refreshing
-  window.location.href="DesignerHomePage.html";
-       });
-    </script>-->
 
 
     <footer>

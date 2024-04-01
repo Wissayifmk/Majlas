@@ -124,12 +124,15 @@ require 'checkSecurity.php';
                         $imageFileName = $row['projectImgFileName'];
                         $description = $row['description'];
                         $designCategory = $row['designCategoryID'];
+                        $sqlcat = "SELECT category FROM designcategory WHERE id=" . $designCategory;
+                        $resultcat = mysqli_query($connection, $sqlcat);
+                        $rowcat = mysqli_fetch_assoc($resultcat);
 
                         echo '<tr>';
                         echo '<td>' . $projectName . '</td>';
                         echo '<td><img class="imgs" src="image/' . $imageFileName
                         . '" alt="project image" id="image' . $projectID . '"></td>';
-                        echo '<td>' . $designCategory . '</td>';
+                        echo '<td>' . $rowcat['category'] . '</td>';
                         echo '<td>' . $description . '</td>';
 
                         echo '<td><a href="ProjectUpdate.php?id=' . $projectID . '">Edit</a></td>'; 

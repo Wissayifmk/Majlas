@@ -113,17 +113,15 @@
 
 <body>
     <header>
-       <a href="index.html" class="logo" accesskey="h"><img src="image/tapImage.PNG" alt="Majlas's Logo" width="200"></a>
-            <button type="button" onclick="window.location.href = 'index.html'" class="log-out">
-                <img src="image/Log-Out.png" alt="log-out">
-            </button> 
+       <a href="index.php" class="logo" accesskey="h"><img src="image/tapImage.PNG" alt="Majlas's Logo" width="200"></a>
+            
     </header>
     <main>
         
          <div class="breadcrumb">
-            <a href="index.html">Homepage</a>
+            <a href="index.php">Homepage</a>
             <span> / </span>
-            <a href="Login.html">Login Page</a>  
+            <a href="Login.php">Login Page</a>  
         </div>
         <div class="form">
             <form id="login-form" method="post">
