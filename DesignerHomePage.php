@@ -145,7 +145,7 @@ require 'checkSecurity.php';
 
             <section id="consultation-requests">
                 <h2 class="header1">Design Consultation Requests</h2>
-                <table>
+                <table id="table2">
                     <tr>
                         <th>Client</th>
                         <th>Room</th>
