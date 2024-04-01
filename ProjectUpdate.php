@@ -39,9 +39,9 @@ if ($error != null) {
     <main>
    
 <div class="breadcrumb">
-           <a href="DesignerHomePage.html">Designer Homepage</a>
+           <?php    echo '<a href="DesignerHomePage.php?id='.$_SESSION['id'].'">Designer Homepage</a>'; ?>
             <span> / </span>
-            <a href="ProjectUpdate.html">Update Project</a>   
+            <?php    echo '<a href="ProjectUpdate.php?id='.$projectID.'">Update Project</a>'; ?>
         </div>
         <div class="container">
             <?php 
@@ -68,11 +68,13 @@ if ($error != null) {
                     <label for="design-category">Design Category:</label>
                     <select id="design-category" name="design-category" required>
 <?php 
-    $sql2 = "SELECT * FROM designcategory";
+    $sql2 = "SELECT * FROM designerspeciality WHERE designerID='" . $_SESSION['id'] . "'";
     $result2 = mysqli_query($connection, $sql2);
     while ($row2 = mysqli_fetch_assoc($result2)) {
-        echo '<option value="'.$row2['id'].'">'.$row2['category'].'</option>';
-        
+        $sql3="SELECT * FROM designcategory WHERE id='".$row2['designCategoryID']."'";
+        $result3 = mysqli_query($connection, $sql3);
+        $row3 = mysqli_fetch_assoc($result3);
+        echo '<option value="'.$row3['id'].'">'.$row3['category'].'</option>';
     }
 ?>                    
                     </select>
