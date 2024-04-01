@@ -50,7 +50,7 @@ if ($error != null) {
                 $row= mysqli_fetch_assoc($result);
                                            
             ?>
-            <form id="project-form" method="post" action="addProjectUpdate.php" >
+            <form id="project-form" method="post" action="addProjectUpdate.php" > <!-- should we add "?id='something' " -->
                 <fieldset>
                     <legend>Update Project</legend>
                 <div class="form-group">

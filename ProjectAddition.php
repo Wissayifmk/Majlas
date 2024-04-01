@@ -47,7 +47,7 @@ $connection = mysqli_connect("localhost", "root", "root", "majlas");
 
         <div class="container">
 
-            <form id="project-form" action="addProjectAddition.php?id=1" method="POST" >
+            <form id="project-form" action="addProjectAddition.php" method="POST" > <!-- should we add "?id='something' " -->
                 <fieldset>
                     <legend>Add Project</legend>
                 <div class="form-group">
