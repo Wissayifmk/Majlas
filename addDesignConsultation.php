@@ -14,7 +14,7 @@ if ($error != null) {
     $output = '<p> Unable to connect to database</p>' . $error;
     exit($output);
 } else {
-    $id = $_GET['request_id'];
+    $id = $_POST['id'];
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stat = "consultation provided";
         $sql = "SELECT * FROM requeststatus WHERE status='$stat'";
