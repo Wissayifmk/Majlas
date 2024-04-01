@@ -127,12 +127,12 @@ require 'checkSecurity.php';
 
                         echo '<tr>';
                         echo '<td>' . $projectName . '</td>';
-                        echo '<td><img src="image/' . $imageFileName
-                        . '" alt="project image" id="image' . $projectID . '" width=50%></td>';
+                        echo '<td><img class="imgs" src="image/' . $imageFileName
+                        . '" alt="project image" id="image' . $projectID . '"></td>';
                         echo '<td>' . $designCategory . '</td>';
                         echo '<td>' . $description . '</td>';
 
-                        echo '<td><a href="ProjectUpdate.php?id=' . $projectID . '">Edit</a></td>'; //name of the page + work or not
+                        echo '<td><a href="ProjectUpdate.php?id=' . $projectID . '">Edit</a></td>'; 
                         echo '<td><a href="ProjectDelete.php?id=' . $projectID . '">Delete</a></td>';
                         echo '</tr>';
                     }
