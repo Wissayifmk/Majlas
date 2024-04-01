@@ -17,7 +17,8 @@ if ($error != null) {
     exit($output);
 } else {
 
-    if (isset($_POST['desId'])) {
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        
         //defining Variable
         $date = date("Y-m-d");
         $type = $_POST['roomType'];
@@ -26,16 +27,19 @@ if ($error != null) {
         $DesignCategory = $_POST['DesignCategory'];
         $Color = $_POST['Color'];
         $Did = $_POST['desId'];
+        
         //getting the id for the status
         $status = 'pending consultation';
         $sql = "SELECT id FROM requeststatus WHERE status='$status'";
         $result = mysqli_query($conn, $sql);
         $rowstatus = mysqli_fetch_assoc($result);
+        
         //getting the id for the room type
         $sql2 = "SELECT id FROM roomtype WHERE type='$type'";
         $result2 = mysqli_query($conn, $sql2);
         $rowtype = mysqli_fetch_assoc($result2);
         $roomType = $rowtype['id'];
+        
         //getting the id for the design category
         $sqlcat = "SELECT id FROM designcategory WHERE category='$DesignCategory'";
         $result3 = mysqli_query($conn, $sqlcat);
