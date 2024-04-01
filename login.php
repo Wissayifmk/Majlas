@@ -39,7 +39,7 @@
 //                exit();
                 echo '<script>
                 alert("Invalid password or email");
-                window.location.href = "index.php";
+                window.location.href = "login.php";
                 </script>';
                 exit;
             }
@@ -52,7 +52,7 @@
 //            exit();
             echo '<script>
                 alert("user not found");
-                window.location.href = "index.php";
+                window.location.href = "login.php";
                 </script>';
                 exit;
             }
@@ -70,7 +70,7 @@
             else {
                 echo '<script>
                 alert("Invalid password or email");
-                window.location.href = "index.php";
+                window.location.href = "login.php";
                 </script>';
                 exit;
 //                 echo '<script>'
@@ -86,7 +86,7 @@
 //            exit();
             echo '<script>
                 alert("user not found");
-                window.location.href = "index.php";
+                window.location.href = "login.php";
                 </script>';
                 exit;
             }
