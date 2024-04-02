@@ -76,7 +76,7 @@ if (mysqli_connect_errno()) {
                             <textarea id="project-description" name="project-description" cols= "30" rows="4" placeholder="Enter Project Description" required></textarea>
                         </div>
                         <div class="form-group">
-                            <button type="submit" id="sub" name="submit" >Add Project</button>
+                            <button type="submit" id="sub" name="submit" class="button type1">Add Project</button>
                         </div>
                     </fieldset>
 
