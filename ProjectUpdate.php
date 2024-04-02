@@ -84,7 +84,7 @@ while ($row2 = mysqli_fetch_assoc($result2)) {
 <?php echo '<input type = "hidden" name = "projectID" value = "' . $projectID . '">'; ?>
                         </div>
                         <div class="form-group">
-                            <button type="submit" id="sub">Update Project</button>
+                            <button type="submit" id="sub" class="button type1">Update Project</button>
                         </div>
                     </fieldset>
 
