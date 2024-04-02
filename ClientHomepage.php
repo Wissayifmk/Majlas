@@ -7,8 +7,8 @@ require 'checkSecurity.php';
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="shortcut icon" type="x-icon" href="image/tapImage.PNG">
-  <link rel="stylesheet" href="clientHome.css">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="clientHome.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <title>Client Home Page</title>
 </head>
@@ -63,11 +63,11 @@ require 'checkSecurity.php';
 <!--                    <p>Select Category:</p>-->
                     <label for="cat">Select Category:</label> <!--can i use it out of form scope?-->
                     <div class="dropdown">
-<!--                        <button class="dropbtn btn">Category 
+  <!--                       <button class="dropbtn btn">Category  
                           <i class="fa fa-caret-down"></i>
                         </button>-->
                         
-<!--                        <div class="dropdown-content">-->
+ <!--                      <div class="dropdown-content">-->
                             <form action="ClientHomepage.php" method="POST">
                                 <select name="cat" id="cat">
                                     <?php 
@@ -80,7 +80,6 @@ require 'checkSecurity.php';
                                 </select>
 
                          
-<!--                        </div>-->
                       </div> 
                     <button type="submit" class="btn">Filter</button>
                     </form>
