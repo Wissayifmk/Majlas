@@ -22,9 +22,6 @@ main {
   flex-direction: column;
   justify-content: space-around;
 }
-/* margin: auto;
-padding: 10px;
-width: 95%; */
 
 
 /* Rest of the code remains the same */
@@ -41,7 +38,6 @@ header{
     top: 0;
     left: 0;
     box-shadow: 1px 1px 5px #881817;
-    /* color:white; */
 }
 
 
@@ -155,27 +151,6 @@ footer{
     text-decoration: none;
     
 }
-  
-/*button{
- margin: 10px 30px 10px 10px; 
-  padding: 0 5px;
-  background-color:#EFEFEF ;
-  color: black;
-  border: 2px solid black;
-  font-size: 22px;
-  font-weight: 500;
-  transition: .4s;
-  border-radius: 50px;
-  text-align: center;
-  text-decoration: none;
-}
-
-button:hover{
-    background-color:black ;
-    color: white;
-    cursor:pointer
-  }
- */
 
 .breadcrumb {
   margin:20px 20px;
@@ -243,4 +218,3 @@ a:link{
   margin: 0;
 
 }*/
-
