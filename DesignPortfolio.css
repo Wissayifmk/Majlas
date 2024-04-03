@@ -9,7 +9,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
 
 main{
     background-image: linear-gradient(rgba(255, 255, 255, 0.7) 100%, transparent), url(image/m.jpg);
-    height: 700px;
+    height: auto;
     Margin-top:-4em;
 }
 .projectPic{
@@ -19,7 +19,7 @@ main{
     height: 250px;
 }
 .allprojects{
-   display: flex;
+    display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content:space-around;
