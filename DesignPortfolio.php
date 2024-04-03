@@ -44,7 +44,6 @@ require 'checkSecurity.php';
                     $output = '<p> Unable to connect to database</p>' . $error;
                     exit($output);
                 } else {
-                    echo '<div class="allprojects"> ';
                     $id = $_GET['id'];
                     $sql = "SELECT * FROM designportoflioproject WHERE designerID ='$id'";
                     $result = mysqli_query($conn, $sql);
@@ -65,7 +64,6 @@ require 'checkSecurity.php';
                         echo ' </div><!-- End of after pic -->';
                         echo '</div><!-- End of the project -->';
                     }
-                     echo '</div><!-- End of all project -->';
                 } 
                 ?>
             </div>
