@@ -61,6 +61,7 @@ require 'checkSecurity.php';
                         echo '<p>' . $row2['category'] . '</p>';
                         echo '<h3 class="ProjectDescriptio">Project Description:</h3>';
                         echo ' <p>' . $row['description'] . '</p>';
+                        echo ' </div><!-- project content -->';
                         echo ' </div><!-- End of after pic -->';
                         echo '</div><!-- End of the project -->';
                     }
