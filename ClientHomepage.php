@@ -68,7 +68,7 @@ require 'checkSecurity.php';
                         </button>-->
                         
  <!--                      <div class="dropdown-content">-->
-                            <form action="ClientHomepage.php" method="POST">
+                            <?php echo '<form action="ClientHomepage.php?id=' . $_SESSION['id'] . '" method="POST">' ?>
                                 <select name="cat" id="cat">
                                     <?php 
                                         $sql="SELECT * FROM designcategory";
