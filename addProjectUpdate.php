@@ -19,9 +19,18 @@ if ($error != null) {
         } else
             $projectName = $row['projectName'];
 
-        if (!empty($_POST['project-image'])) {
-            $projectImage = $_POST['project-image'];
-        } else
+        if (!empty($_FILES['project-image'])) {
+            $brandLogoName = $_FILES['project-image']['name'];
+            $brandLogoTmp = $_FILES['project-image']['tmp_name'];
+
+            if (!empty($brandLogoName)) {
+                // Specify the directory to store the uploaded brand logos
+                $brandLogoPath = "/Applications/MAMP/htdocs/Majlas/image/" . $brandLogoName;
+
+                // Move the uploaded file to the specified directory
+                move_uploaded_file($brandLogoTmp, $brandLogoPath);
+        }
+        }else
             $projectImage = $row['projectImgFileName'];
 
         if (isset($_POST['design-category'])) {
