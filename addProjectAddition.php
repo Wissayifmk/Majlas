@@ -13,7 +13,7 @@ if (mysqli_connect_errno()) {
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Retrieve form data
     $projectName = $_POST['project-name'];
-    $projectImage = $_POST['project-image'];
+    $projectImage = $_FILES['project-image'];
     $designCategory = $_POST['design-category'];
     $projectDescription = $_POST['project-description'];
 
