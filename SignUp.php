@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo 'something wrong';
         die("Database connection failed: " . mysqli_connect_error());
     } else {
-        if ($Type == "client") {
+         if ($Type == "client") {
             $sqlEmail = "SELECT COUNT(emailAddress) AS countEmail FROM client WHERE emailAddress = '$email'";
             $result = mysqli_query($connection, $sqlEmail);
             $row = mysqli_fetch_assoc($result);
@@ -38,53 +38,56 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     echo '<script>window.location.href = "ClientHomepage.php";</script>';
                     exit; // To ensure stopping the execution of this script
                 }
-            }
-        } else { // Designer
-            $sqlEmail = "SELECT COUNT(*) AS countEmail FROM designer WHERE emailAddress = '$email'";
-            $result = mysqli_query($connection, $sqlEmail);
-            $row = mysqli_fetch_assoc($result);
+         }
+         
+                }else { // Designer
+            
+            $brandName = $_POST['Brandname'];
+            $category = $_POST['Category'];
 
-            if ($row['countEmail'] > 0) {
-                echo '<script>
-                            alert("The email already exists. Please use a different email");
-                            window.location.href = "SignUp.php";
-                        </script>';
-                exit; // To ensure stopping the execution of this script
+            // Retrieve the brand logo using $_FILES global array
+            $brandLogoName = $_FILES['BrandLogo']['name'];
+            $brandLogoTmp = $_FILES['BrandLogo']['tmp_name'];
+
+            if (!empty($brandLogoName)) {
+                // Specify the directory to store the uploaded brand logos
+                $brandLogoPath = "/Applications/MAMP/htdocs/Majlas/image/" . $brandLogoName;
+
+                // Move the uploaded file to the specified directory
+                move_uploaded_file($brandLogoTmp, $brandLogoPath);
             } else {
-                $brandName = $_POST['Brandname'];
-                $brandLogo = $_POST['BrandLogo'];
-                $category = $_POST['Category'];
+                $brandLogoName = ""; // Set an empty value if no logo is uploaded
+            }
 
-                $sqlInsert = "INSERT INTO designer (firstName, lastName, emailAddress, password, brandName, logoImgFileName) VALUES (?, ?, ?, ?, ?, ?)";
-                $Pstmt = mysqli_prepare($connection, $sqlInsert);
-                mysqli_stmt_bind_param($Pstmt, "ssssss", $FName, $LName, $email, $passwordHashed, $brandName, $brandLogo);
+            $sqlInsert = "INSERT INTO designer (firstName, lastName, emailAddress, password, brandName, logoImgFileName) VALUES (?, ?, ?, ?, ?, ?)";
+            $Pstmt = mysqli_prepare($connection, $sqlInsert);
+            mysqli_stmt_bind_param($Pstmt, "ssssss", $FName, $LName, $email, $passwordHashed, $brandName, $brandLogoName);
 
-                if (mysqli_stmt_execute($Pstmt)) {
-                    $LastID = mysqli_insert_id($connection);
+            if (mysqli_stmt_execute($Pstmt)) {
+                $LastID = mysqli_insert_id($connection);
 
-                    foreach ($category as $cat) {
-                        $sqlCat = "SELECT id FROM designcategory WHERE category = '" . $cat . "'";
-                        $result = mysqli_query($connection, $sqlCat);
+                foreach ($category as $cat) {
+                    $sqlCat = "SELECT id FROM designcategory WHERE category = '" . $cat . "'";
+                    $result = mysqli_query($connection, $sqlCat);
 
-                        if ($result) {
-                            $row = mysqli_fetch_assoc($result);
+                    if ($result) {
+                        $row = mysqli_fetch_assoc($result);
 
-                            if ($row != null) {
-                                $catID = $row['id'];
+                        if ($row != null) {
+                            $catID = $row['id'];
 
-                                if (!empty($catID)) {
-                                    $sqlInsertCategory = "INSERT INTO designerspeciality (designerID, designCategoryID) VALUES ('$LastID', '$catID')";
-                                    mysqli_query($connection, $sqlInsertCategory);
-                                }
+                            if (!empty($catID)) {
+                                $sqlInsertCategory = "INSERT INTO designerspeciality (designerID, designCategoryID) VALUES ('$LastID', '$catID')";
+                                mysqli_query($connection, $sqlInsertCategory);
                             }
                         }
                     }
-
-                    $_SESSION['id'] = $LastID;
-                    $_SESSION['type'] = $Type;
-                    echo '<script>window.location.href = "DesignerHomePage.php";</script>';
-                    exit; // To ensure stopping the execution of this script
                 }
+
+                $_SESSION['id'] = $LastID;
+                $_SESSION['type'] = $Type;
+                echo '<script>window.location.href = "DesignerHomePage.php";</script>';
+                exit; // To ensure stopping the execution of this script
             }
         }
     }
@@ -128,7 +131,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
                 <p id="paragraph">Let's start the journey! <br> Select Account Type</p>
                 <div class="DesForm" style="display: none;">
-                    <form action="SignUp.php" method="POST" >
+                    <form action="SignUp.php" method="POST" enctype="multipart/form-data">
                         <div class="DesInfo">
                             <h2 style="color: rgb(68, 68, 68); font-size: 20px;">Designer's Information</h2><br>
 
