@@ -38,65 +38,59 @@ require 'checkSecurity.php';
         </header>
         <main>
             <section class="part0">
-                <div class="headerContent">
-                    <?php
-                    if ($result1 && mysqli_num_rows($result1) > 0) {//check when log in 
-                        $designer = mysqli_fetch_assoc($result1);
-                        $firstName = $designer['firstName'];
-                        $lastName = $designer['lastName'];
-                        $emailAddress = $designer['emailAddress'];
-                        $brandName = $designer['brandName'];
-                        $logoImgFileName = $designer['logoImgFileName'];
+    <div class="headerContent">
+        <?php
+        if ($result1 && mysqli_num_rows($result1) > 0) {
+            $designer = mysqli_fetch_assoc($result1);
+            $firstName = $designer['firstName'];
+            $lastName = $designer['lastName'];
+            $emailAddress = $designer['emailAddress'];
+            $brandName = $designer['brandName'];
+            $logoImgFileName = $designer['logoImgFileName'];
 
-                        echo '<div class="designer-info">';
-                        echo '<h1>Welcome ' . $firstName . '</h1>';
-                        echo '<p>';
-                        echo '<h3>Designer information:</h3>';
-                        echo '<span>First name:</span> ' . $firstName . '<br>';
-                        echo '<span>Last name:</span> ' . $lastName . '<br>';
-                        echo '<span>Email address:</span> <a href="mailto:' . $emailAddress . '">' . $emailAddress . '</a><br>';
-                        echo '<span>Brand Name:</span> ' . $brandName . '<br>';
-                        echo '<span>Category: </span>';
-                        $query4 = "SELECT designCategoryID FROM DesignerSpeciality WHERE designerID=$DesignerID";
-                        $result4 = mysqli_query($connection, $query4);
-                        if ($result4) {
-                            $hasRows = false;
-                            while ($row2 = mysqli_fetch_assoc($result4)) {
-                                $catid = $row2['designCategoryID'];
-                                $query5 = "SELECT category FROM DesignCategory WHERE id=$catid";
-                                $result5 = mysqli_query($connection, $query5);
-                                while ($row3 = mysqli_fetch_assoc($result5)) {
-                                    if ($hasRows) {
-                                        echo ', ';
-                                    }
-                                    echo $row3['category'];
-                                    $hasRows = true;
-                                }
-                            }
+            echo '<div class="designer-info">';
+            echo '<h1>Welcome ' . $firstName . '</h1>';
+            echo '<p>';
+            echo '<h3>Designer information:</h3>';
+            echo '<span>First name:</span> ' . $firstName . '<br>';
+            echo '<span>Last name:</span> ' . $lastName . '<br>';
+            echo '<span>Email address:</span> <a href="mailto:' . $emailAddress . '">' . $emailAddress . '</a><br>';
+            echo '<span>Brand Name:</span> ' . $brandName . '<br>';
+            echo '<span>Category: </span>';
 
-//                                
-//                                $result5 = mysqli_query($connection, $query5);
-//                                if ($result5) {
-//                                    $row3 = mysqli_fetch_assoc($result5);
-//                                    echo $row3['category'] . " ";
-//                                } else {
-//                                    echo 'Error fetching design category: ' . mysqli_error($connection);
-//                                }
-                            
-                            echo '</p>';
-                            echo '</div>';
-                        } else {
-                            echo 'Error fetching designer specialties: ' . mysqli_error($connection);
+            $query4 = "SELECT designCategoryID FROM DesignerSpeciality WHERE designerID=$DesignerID";
+            $result4 = mysqli_query($connection, $query4);
+            if ($result4) {
+                $hasRows = false;
+                while ($row2 = mysqli_fetch_assoc($result4)) {
+                    $catid = $row2['designCategoryID'];
+                    $query5 = "SELECT category FROM DesignCategory WHERE id=$catid";
+                    $result5 = mysqli_query($connection, $query5);
+                    while ($row3 = mysqli_fetch_assoc($result5)) {
+                        if ($hasRows) {
+                            echo ', ';
                         }
-                    } else {
-                        echo 'No designer found.';
+                        echo $row3['category'];
+                        $hasRows = true;
                     }
-                    ?>
-                </div>
-                <span class="imgHover">
-                    <?php echo '<img src="image/' . $logoImgFileName . '" alt="designer logo" id="image0" width=80%>'; ?> 
-                </span>
-            </section>   
+                }
+
+                echo '</p>';
+                echo '</div>';
+
+                // Display the logo image
+                echo '<span class="imgHover">';
+                echo '<img src="image/' . $logoImgFileName . '" alt="designer logo" id="image0" width="80%">';
+                echo '</span>';
+            } else {
+                echo 'Error fetching designer specialties: ' . mysqli_error($connection);
+            }
+        } else {
+            echo 'No designer found.';
+        }
+        ?>
+    </div>
+</section>   
             <div class="desHeader">
                 <h3 class="header1">Design Portfolio</h3>
                 <div class="add">
