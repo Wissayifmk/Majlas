@@ -13,7 +13,18 @@ if (mysqli_connect_errno()) {
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Retrieve form data
     $projectName = $_POST['project-name'];
-    $projectImage = $_FILES['project-image'];
+    if (!empty($_FILES['project-image'])) {
+            $brandLogoName = $_FILES['project-image']['name'];
+            $brandLogoTmp = $_FILES['project-image']['tmp_name'];
+
+            if (!empty($brandLogoName)) {
+                // Specify the directory to store the uploaded brand logos
+                $brandLogoPath = "/Applications/MAMP/htdocs/Majlas/image/" . $brandLogoName;
+
+                // Move the uploaded file to the specified directory
+                move_uploaded_file($brandLogoTmp, $brandLogoPath);
+        }
+        }
     $designCategory = $_POST['design-category'];
     $projectDescription = $_POST['project-description'];
 
