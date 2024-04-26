@@ -11,6 +11,37 @@ require 'checkSecurity.php';
         <link rel="stylesheet" href="style.css">
         <link rel="stylesheet" href="DesignerHomePage.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script>
+$(document).ready(function() {
+  // Attach event listener to delete buttons
+  $('.delete-btn').click(function(e) {
+    e.preventDefault();
+    var projectID = $(this).data('project-id');
+    
+    // Send AJAX request to PHP page
+    $.ajax({
+      url: 'ProjectDelete.php',
+      method: 'GET',
+      data: { id: projectID },
+      success: function(response) {
+        response = JSON.parse(response);
+        if (response.success) {
+          // Delete row from HTML table
+          $(e.target).closest('tr').remove();
+        } else {
+          // Display error message or take appropriate action
+          alert('Failed to delete project.');
+        }
+      },
+      error: function() {
+        // Display error message or take appropriate action
+        alert('An error occurred.');
+      }
+    });
+  });
+});
+
+    </script>
     </head>
 
     <?php
@@ -130,7 +161,7 @@ require 'checkSecurity.php';
                         echo '<td>' . $description . '</td>';
 
                         echo '<td><a href="ProjectUpdate.php?id=' . $projectID . '">Edit</a></td>'; 
-                        echo '<td><a href="ProjectDelete.php?id=' . $projectID . '">Delete</a></td>';
+                        echo '<td class="B2"><a class="delete-btn" href="ProjectDelete.php" data-project-id="' . $projectID . '">Delete</a></td>';
                         echo '</tr>';
                     }
                 }
