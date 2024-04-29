@@ -42,6 +42,32 @@ $(document).ready(function() {
   });
 });
 
+$(document).ready(function() {
+  // Attach event listener to delete buttons
+  $('.DeclinedDesignConsultation').click(function(e) {
+    e.preventDefault();
+    var request_id = $(this).data('request_id');
+    
+    // Send AJAX request to PHP page
+    $.ajax({
+      url: 'DeclinedDesignConsultation.php',
+      method: 'GET',
+      data: { id: request_id },
+      success: function(response) {
+        response = JSON.parse(response);
+        if (response.success) {
+          $(e.target).closest('tr').remove();
+        } else {
+          alert('Failed to Decline project.');
+        }
+      },
+      error: function() {
+        alert('An error occurred.');
+      }
+    });
+  });
+});
+
     </script>
     </head>
 
@@ -203,7 +229,7 @@ $(document).ready(function() {
                             echo '<td>' . $rows["colorPreferences"] . '</td>';
                             echo '<td>' . $rows["date"] . '</td>';
                             echo '<td><a href="DesignConsultation.php?request_id='.$rows['id'].'">Provide Consultation</a></td>';
-                            echo '<td><a href="DeclinedDesignConsultation.php?request_id=' . $rows["id"] . '">Decline Consultation</a></td>';
+                            echo '<td><a class="DeclinedDesignConsultation" href="DeclinedDesignConsultation.php" data-request_id="' . $rows["id"] . '">Decline Consultation</a></td>';
                             echo '</tr>';
                         }
                         } 

@@ -21,11 +21,11 @@ if ($error != null) {
     // Update the status of the consultation request
     $query = "UPDATE designconsultationrequest SET statusID = 1 WHERE id = $requestID";
     $result = mysqli_query($connection, $query);
-
     if ($result) {
-        $header = header("Location: DesignerHomePage.php?id=" . $_SESSION['id']);
-        exit();
-    }
+            echo json_encode(["success" => true]);
+        } else {
+            echo json_encode(["success" => false]);
+        }
 }
 
 mysqli_close($connection);
