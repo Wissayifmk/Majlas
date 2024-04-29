@@ -44,9 +44,9 @@ $(document).ready(function() {
 
 $(document).ready(function() {
   // Attach event listener to delete buttons
-  $('.DeclinedDesignConsultation').click(function(e) {
+  $('.Decline').click(function(e) {
     e.preventDefault();
-    var request_id = $(this).data('request_id');
+    var request_id = $(this).data('request-id');
     
     // Send AJAX request to PHP page
     $.ajax({
@@ -229,7 +229,7 @@ $(document).ready(function() {
                             echo '<td>' . $rows["colorPreferences"] . '</td>';
                             echo '<td>' . $rows["date"] . '</td>';
                             echo '<td><a href="DesignConsultation.php?request_id='.$rows['id'].'">Provide Consultation</a></td>';
-                            echo '<td><a class="DeclinedDesignConsultation" href="DeclinedDesignConsultation.php" data-request_id="' . $rows["id"] . '">Decline Consultation</a></td>';
+                            echo '<td><a class="Decline" href="DeclinedDesignConsultation.php" data-request-id="' . $rows["id"] . '">Decline Consultation</a></td>';
                             echo '</tr>';
                         }
                         } 
