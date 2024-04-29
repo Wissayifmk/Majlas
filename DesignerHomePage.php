@@ -43,7 +43,6 @@ $(document).ready(function() {
 });
 
 $(document).ready(function() {
-  // Attach event listener to delete buttons
   $('.Decline').click(function(e) {
     e.preventDefault();
     var request_id = $(this).data('request-id');
